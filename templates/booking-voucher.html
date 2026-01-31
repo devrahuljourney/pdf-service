@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Voucher - {{voucherNumber}}</title>
+    <style>
+      /* Cox & Kings Brand Colors */
+      :root {
+        --navy: #0f2942;
+        --accent: #c65a11;
+        --light-gray: #f5f5f5;
+        --border-gray: #e0e0e0;
+        --text-dark: #333333;
+        --text-light: #666666;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text-dark);
+        line-height: 1.6;
+        font-size: 14px;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        background: var(--navy);
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .header h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+
+      .header .tagline {
+        font-size: 14px;
+        opacity: 0.9;
+      }
+
+      .voucher-number {
+        background: var(--accent);
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        border-radius: 5px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: white;
+        border: 1px solid var(--border-gray);
+        border-radius: 5px;
+      }
+
+      .section-title {
+        font-size: 18px;
+        color: var(--navy);
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--accent);
+        font-weight: 600;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .info-item {
+        margin-bottom: 10px;
+      }
+
+      .info-label {
+        font-weight: 600;
+        color: var(--text-light);
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }
+
+      .info-value {
+        color: var(--text-dark);
+        font-size: 14px;
+      }
+
+      .price-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+
+      .price-table td {
+        padding: 10px;
+        border-bottom: 1px solid var(--border-gray);
+      }
+
+      .price-table td:first-child {
+        font-weight: 500;
+        color: var(--text-light);
+      }
+
+      .price-table td:last-child {
+        text-align: right;
+        font-weight: 600;
+      }
+
+      .price-table tr.total {
+        background: var(--light-gray);
+        font-size: 16px;
+      }
+
+      .price-table tr.total td {
+        padding: 15px 10px;
+        border-bottom: none;
+        color: var(--navy);
+      }
+
+      .itinerary-day {
+        margin-bottom: 20px;
+        padding: 15px;
+        background: var(--light-gray);
+        border-left: 4px solid var(--accent);
+      }
+
+      .itinerary-day h4 {
+        color: var(--navy);
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .itinerary-day p {
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+
+      .flight-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background: var(--light-gray);
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
+
+      .flight-leg {
+        flex: 1;
+        text-align: center;
+      }
+
+      .flight-arrow {
+        color: var(--accent);
+        font-size: 24px;
+        margin: 0 20px;
+      }
+
+      .inclusions-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .inclusions-list li {
+        padding: 8px 0;
+        padding-left: 25px;
+        position: relative;
+      }
+
+      .inclusions-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-weight: bold;
+      }
+
+      .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--border-gray);
+        text-align: center;
+        color: var(--text-light);
+        font-size: 12px;
+      }
+
+      .contact-info {
+        margin-top: 15px;
+        padding: 15px;
+        background: var(--light-gray);
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <h1>Cox & Kings</h1>
+        <p class="tagline">Partner Network - Booking Voucher</p>
+      </div>
+
+      <!-- Voucher Number -->
+      <div class="voucher-number">Voucher #{{voucherNumber}}</div>
+
+      <!-- Tour Details -->
+      <div class="section">
+        <h2 class="section-title">Tour Details</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Tour Package</div>
+            <div class="info-value">{{tourTitle}}</div>
+          </div>
+          {{#if destination}}
+          <div class="info-item">
+            <div class="info-label">Destination</div>
+            <div class="info-value">{{destination}}</div>
+          </div>
+          {{/if}}
+          <div class="info-item">
+            <div class="info-label">Departure Date</div>
+            <div class="info-value">{{departureDate}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Return Date</div>
+            <div class="info-value">{{endDate}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Passengers</div>
+            <div class="info-value">
+              {{paxAdults}} Adult(s) {{#if (gt paxChildren 0)}}, {{paxChildren}}
+              Child(ren){{/if}} {{#if (gt paxInfants 0)}}, {{paxInfants}}
+              Infant(s){{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Information -->
+      <div class="section">
+        <h2 class="section-title">Customer Information</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Name</div>
+            <div class="info-value">{{customerName}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Phone</div>
+            <div class="info-value">{{customerPhone}}</div>
+          </div>
+          {{#if customerEmail}}
+          <div class="info-item">
+            <div class="info-label">Email</div>
+            <div class="info-value">{{customerEmail}}</div>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+
+      <!-- Travelers -->
+      {{#if travelers}}
+      <div class="section">
+        <h2 class="section-title">Traveler Details</h2>
+        {{#each travelers}}
+        <div
+          class="info-item"
+          style="
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+          ">
+          <div class="info-value" style="font-weight: 600">
+            {{add @index 1}}. {{firstName}} {{lastName}} ({{type}})
+          </div>
+          {{#if passportNumber}}
+          <div style="margin-top: 5px; font-size: 12px; color: #666">
+            Passport: {{passportNumber}} | Expiry: {{passportExpiry}} |
+            Nationality: {{nationality}}
+          </div>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}
+
+      <!-- Flight Details -->
+      {{#if flightIncluded}} {{#if flightDetails}}
+      <div class="section">
+        <h2 class="section-title">Flight Details</h2>
+
+        {{#if flightDetails.outbound}}
+        <div style="margin-bottom: 20px">
+          <h3 style="color: #0f2942; font-size: 14px; margin-bottom: 10px">
+            Outbound Flight
+          </h3>
+          <div class="flight-details">
+            <div class="flight-leg">
+              <div style="font-weight: 600">{{departureAirport}}</div>
+              <div style="font-size: 12px; color: #666">
+                {{flightDetails.outbound.departureDate}}
+              </div>
+              <div style="font-size: 16px; font-weight: 600; color: #0f2942">
+                {{flightDetails.outbound.departureTime}}
+              </div>
+              {{#if flightDetails.outbound.departureTerminal}}
+              <div style="font-size: 12px">
+                Terminal {{flightDetails.outbound.departureTerminal}}
+              </div>
+              {{/if}}
+            </div>
+            <div class="flight-arrow">→</div>
+            <div class="flight-leg">
+              <div style="font-weight: 600">
+                {{flightDetails.outbound.arrivalAirport}}
+              </div>
+              <div style="font-size: 16px; font-weight: 600; color: #0f2942">
+                {{flightDetails.outbound.arrivalTime}}
+              </div>
+              {{#if flightDetails.outbound.arrivalTerminal}}
+              <div style="font-size: 12px">
+                Terminal {{flightDetails.outbound.arrivalTerminal}}
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          {{#if flightDetails.outbound.airline}}
+          <div style="text-align: center; font-size: 12px; color: #666">
+            {{flightDetails.outbound.airline}} -
+            {{flightDetails.outbound.flightNumber}}
+          </div>
+          {{/if}}
+        </div>
+        {{/if}} {{#if flightDetails.return}}
+        <div style="margin-bottom: 20px">
+          <h3 style="color: #0f2942; font-size: 14px; margin-bottom: 10px">
+            Return Flight
+          </h3>
+          <div class="flight-details">
+            <div class="flight-leg">
+              <div style="font-weight: 600">
+                {{flightDetails.return.arrivalAirport}}
+              </div>
+              <div style="font-size: 12px; color: #666">
+                {{flightDetails.return.departureDate}}
+              </div>
+              <div style="font-size: 16px; font-weight: 600; color: #0f2942">
+                {{flightDetails.return.departureTime}}
+              </div>
+              {{#if flightDetails.return.departureTerminal}}
+              <div style="font-size: 12px">
+                Terminal {{flightDetails.return.departureTerminal}}
+              </div>
+              {{/if}}
+            </div>
+            <div class="flight-arrow">→</div>
+            <div class="flight-leg">
+              <div style="font-weight: 600">{{departureAirport}}</div>
+              <div style="font-size: 16px; font-weight: 600; color: #0f2942">
+                {{flightDetails.return.arrivalTime}}
+              </div>
+              {{#if flightDetails.return.arrivalTerminal}}
+              <div style="font-size: 12px">
+                Terminal {{flightDetails.return.arrivalTerminal}}
+              </div>
+              {{/if}}
+            </div>
+          </div>
+          {{#if flightDetails.return.airline}}
+          <div style="text-align: center; font-size: 12px; color: #666">
+            {{flightDetails.return.airline}} -
+            {{flightDetails.return.flightNumber}}
+          </div>
+          {{/if}}
+        </div>
+        {{/if}} {{#if flightDetails.baggage}}
+        <div style="background: #f5f5f5; padding: 10px; border-radius: 5px">
+          <strong>Baggage Allowance:</strong>
+          {{#if flightDetails.baggage.checkin}}Check-in:
+          {{flightDetails.baggage.checkin}}{{/if}} {{#if
+          flightDetails.baggage.cabin}}{{#if flightDetails.baggage.checkin}} |
+          {{/if}}Cabin: {{flightDetails.baggage.cabin}}{{/if}}
+        </div>
+        {{/if}}
+      </div>
+      {{/if}} {{/if}}
+
+      <!-- Price Breakdown -->
+      <div class="section">
+        <h2 class="section-title">Price Breakdown</h2>
+        <table class="price-table">
+          <tr>
+            <td>Package Amount</td>
+            <td>{{formatINR totalAmount}}</td>
+          </tr>
+          <tr>
+            <td>GST (5%)</td>
+            <td>{{formatINR gstAmount}}</td>
+          </tr>
+          {{#if includeTcs}}
+          <tr>
+            <td>TCS ({{tcsRate}})</td>
+            <td>{{formatINR tcsAmount}}</td>
+          </tr>
+          {{/if}}
+          <tr class="total">
+            <td>Grand Total</td>
+            <td>{{formatINR grandTotal}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Payment Information -->
+      {{#if paymentInfo}}
+      <div class="section">
+        <h2 class="section-title">Payment Schedule</h2>
+        {{#if (eq paymentInfo.paymentType "installment")}}
+        <table class="price-table">
+          {{#each paymentInfo.installments}}
+          <tr>
+            <td>{{label}}</td>
+            <td>{{formatINR amount}} (Due: {{dueDate}})</td>
+          </tr>
+          {{/each}}
+        </table>
+        {{else}}
+        <p>Payment Type: One-time payment</p>
+        {{/if}}
+      </div>
+      {{/if}}
+
+      <!-- Itinerary -->
+      {{#if itinerary}}
+      <div class="section">
+        <h2 class="section-title">Itinerary</h2>
+        {{#each itinerary}}
+        <div class="itinerary-day">
+          <h4>Day {{day}}: {{title}}</h4>
+          {{#if city_name}}
+          <p><strong>City:</strong> {{city_name}}</p>
+          {{/if}}
+          <p>{{description}}</p>
+          {{#if meals}}
+          <p>
+            <strong>Meals:</strong> {{#each meals}}{{this}}{{#unless @last}},
+            {{/unless}}{{/each}}
+          </p>
+          {{/if}} {{#if stay}} {{#if stay.hotel_name}}
+          <p>
+            <strong>Accommodation:</strong> {{stay.hotel_name}}{{#if
+            stay.room_type}} - {{stay.room_type}}{{/if}}
+          </p>
+          {{/if}} {{/if}}
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}
+
+      <!-- Inclusions -->
+      {{#if inclusions}}
+      <div class="section">
+        <h2 class="section-title">Package Inclusions</h2>
+        <ul class="inclusions-list">
+          {{#each inclusions}}
+          <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      {{/if}}
+
+      <!-- Special Requests -->
+      {{#if specialRequests}}
+      <div class="section">
+        <h2 class="section-title">Special Requests</h2>
+        <p>{{specialRequests}}</p>
+      </div>
+      {{/if}}
+
+      <!-- Agency Contact -->
+      <div class="section">
+        <h2 class="section-title">Agency Contact</h2>
+        <div class="contact-info">
+          <div style="font-weight: 600; font-size: 16px; margin-bottom: 10px">
+            {{agencyName}}
+          </div>
+          {{#if agentName}}
+          <div>Agent: {{agentName}}</div>
+          {{/if}}
+          <div>Phone: {{agencyPhone}}</div>
+          {{#if agencyEmail}}
+          <div>Email: {{agencyEmail}}</div>
+          {{/if}}
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>Thank you for choosing Cox & Kings Partner Network</p>
+        <p>
+          This is a computer-generated document and does not require a
+          signature.
+        </p>
+        <p>&copy; {{currentYear}} Cox & Kings. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "buildCommand": null,
+  "devCommand": null,
+  "installCommand": "npm install",
+  "framework": null,
+  "functions": {
+    "api/**/*.ts": {
+      "memory": 3008,
+      "maxDuration": 60
+    }
+  }
+}

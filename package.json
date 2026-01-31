@@ -1,0 +1,28 @@
+{
+  "name": "coxandkings-pdf-service",
+  "version": "1.0.0",
+  "description": "PDF Generation Service for Cox & Kings Partner Network",
+  "type": "module",
+  "scripts": {
+    "start": "npx vercel dev",
+    "build": "tsc",
+    "deploy": "npx vercel --prod",
+    "login": "npx vercel login",
+    "test:local": "node --loader ts-node/esm test-local.ts"
+  },
+  "dependencies": {
+    "@sparticuz/chromium": "^119.0.2",
+    "dotenv": "^17.2.3",
+    "handlebars": "^4.7.8",
+    "nodemailer": "^6.9.7",
+    "puppeteer-core": "^21.11.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/nodemailer": "^6.4.14",
+    "@vercel/node": "^3.0.12",
+    "typescript": "^5.3.3",
+    "vercel": "^50.9.6"
+  }
+}
