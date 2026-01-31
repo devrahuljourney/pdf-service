@@ -4,7 +4,8 @@
   "description": "PDF Generation Service for Cox & Kings Partner Network",
   "type": "module",
   "scripts": {
-    "start": "npx vercel dev",
+    "dev": "node server.js",
+    "start": "node server.js",
     "build": "tsc",
     "deploy": "npx vercel --prod",
     "login": "npx vercel login",
@@ -12,13 +13,17 @@
   },
   "dependencies": {
     "@sparticuz/chromium": "^119.0.2",
+    "cors": "^2.8.6",
     "dotenv": "^17.2.3",
+    "express": "^5.2.1",
     "handlebars": "^4.7.8",
     "nodemailer": "^6.9.7",
     "puppeteer-core": "^21.11.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
     "@types/node": "^20.10.0",
     "@types/nodemailer": "^6.4.14",
     "@vercel/node": "^3.0.12",

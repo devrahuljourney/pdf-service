@@ -29,6 +29,41 @@ export interface BookingData {
   flightDetails?: FlightDetails | null;
 }
 
+export interface QuoteData {
+  quoteNumber: string;
+  quoteDate: string;
+  validUntil: string;
+  customerName: string;
+  customerEmail: string | null;
+  customerPhone: string;
+  tourTitle: string;
+  destination: string | null;
+  departureDate: string;
+  endDate: string;
+  duration: string; // e.g., "7 Days / 6 Nights"
+  paxAdults: number;
+  paxChildren: number;
+  paxInfants: number;
+  pricePerAdult: number;
+  pricePerChild?: number;
+  pricePerInfant?: number;
+  totalAmount: number;
+  agencyName: string;
+  agencyPhone: string;
+  agencyEmail?: string | null;
+  agentName?: string | null;
+  inclusions?: string[] | null;
+  exclusions?: string[] | null;
+  itinerary?: ItineraryDay[] | null;
+  nightAllocations?: NightAllocation[] | null;
+  termsAndConditions?: string | null;
+  specialNotes?: string | null;
+  bannerImageUrl?: string | null;
+  brandTag?: string | null;
+  includeTcs?: boolean;
+  flightIncluded?: boolean | null;
+}
+
 export interface ItineraryDay {
   day: number;
   title: string;
@@ -115,8 +150,8 @@ export interface EmailRecipient {
 }
 
 export interface PDFRequest {
-  type: 'booking-voucher' | 'quote' | 'invoice';
-  data: BookingData | any;
+  type: "booking-voucher" | "quote" | "invoice";
+  data: BookingData | QuoteData | any;
   recipients: {
     customer?: EmailRecipient;
     agent?: EmailRecipient;

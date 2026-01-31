@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quote - {{quoteNumber}}</title>
+    <style>
+      /* Cox & Kings Brand Colors */
+      :root {
+        --navy: #0f2942;
+        --accent: #c65a11;
+        --light-gray: #f5f5f5;
+        --border-gray: #e0e0e0;
+        --text-dark: #333333;
+        --text-light: #666666;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--text-dark);
+        line-height: 1.6;
+        font-size: 14px;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        background: var(--navy);
+        color: white;
+        padding: 30px 20px;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .header h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+
+      .header .tagline {
+        font-size: 14px;
+        opacity: 0.9;
+      }
+
+      .quote-number {
+        background: var(--accent);
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        border-radius: 5px;
+      }
+
+      .quote-meta {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        padding: 15px;
+        background: var(--light-gray);
+        border-radius: 5px;
+      }
+
+      .quote-meta div {
+        flex: 1;
+      }
+
+      .quote-meta .label {
+        font-size: 12px;
+        color: var(--text-light);
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }
+
+      .quote-meta .value {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--navy);
+      }
+
+      .section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: white;
+        border: 1px solid var(--border-gray);
+        border-radius: 5px;
+      }
+
+      .section-title {
+        font-size: 18px;
+        color: var(--navy);
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--accent);
+        font-weight: 600;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .info-item {
+        margin-bottom: 10px;
+      }
+
+      .info-label {
+        font-weight: 600;
+        color: var(--text-light);
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }
+
+      .info-value {
+        color: var(--text-dark);
+        font-size: 14px;
+      }
+
+      .itinerary-day {
+        margin-bottom: 20px;
+        padding: 15px;
+        background: var(--light-gray);
+        border-left: 4px solid var(--accent);
+        page-break-inside: avoid;
+      }
+
+      .itinerary-day h4 {
+        color: var(--navy);
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .itinerary-day p {
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+
+      .itinerary-day .day-details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 10px;
+        font-size: 13px;
+      }
+
+      .itinerary-day .detail-item {
+        display: flex;
+        align-items: center;
+      }
+
+      .itinerary-day .detail-label {
+        font-weight: 600;
+        margin-right: 5px;
+        color: var(--text-light);
+      }
+
+      .inclusions-list,
+      .exclusions-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .inclusions-list li,
+      .exclusions-list li {
+        padding: 8px 0;
+        padding-left: 25px;
+        position: relative;
+      }
+
+      .inclusions-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-weight: bold;
+      }
+
+      .exclusions-list li:before {
+        content: "✗";
+        position: absolute;
+        left: 0;
+        color: #999;
+        font-weight: bold;
+      }
+
+      .price-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+
+      .price-table td {
+        padding: 10px;
+        border-bottom: 1px solid var(--border-gray);
+      }
+
+      .price-table td:first-child {
+        font-weight: 500;
+        color: var(--text-light);
+      }
+
+      .price-table td:last-child {
+        text-align: right;
+        font-weight: 600;
+      }
+
+      .price-table tr.subtotal {
+        background: var(--light-gray);
+      }
+
+      .price-table tr.total {
+        background: var(--navy);
+        color: white;
+        font-size: 16px;
+      }
+
+      .price-table tr.total td {
+        padding: 15px 10px;
+        border-bottom: none;
+      }
+
+      .terms-box {
+        background: var(--light-gray);
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .terms-box h4 {
+        color: var(--navy);
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .terms-box ul {
+        margin-left: 20px;
+      }
+
+      .terms-box li {
+        margin-bottom: 5px;
+      }
+
+      .special-notes {
+        background: #fff9e6;
+        border-left: 4px solid var(--accent);
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .special-notes h4 {
+        color: var(--accent);
+        margin-bottom: 10px;
+      }
+
+      .contact-info {
+        margin-top: 15px;
+        padding: 15px;
+        background: var(--light-gray);
+        border-radius: 5px;
+      }
+
+      .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--border-gray);
+        text-align: center;
+        color: var(--text-light);
+        font-size: 12px;
+      }
+
+      .validity-badge {
+        display: inline-block;
+        background: #e8f5e9;
+        color: #2e7d32;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      @media print {
+        body {
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+        .section {
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <h1>Cox & Kings</h1>
+        <p class="tagline">Partner Network - Travel Quote</p>
+      </div>
+
+      <!-- Quote Number -->
+      <div class="quote-number">Quote #{{quoteNumber}}</div>
+
+      <!-- Quote Meta Information -->
+      <div class="quote-meta">
+        <div>
+          <div class="label">Quote Date</div>
+          <div class="value">{{quoteDate}}</div>
+        </div>
+        <div>
+          <div class="label">Valid Until</div>
+          <div class="value">{{validUntil}}</div>
+        </div>
+        <div>
+          <div class="label">Duration</div>
+          <div class="value">{{duration}}</div>
+        </div>
+      </div>
+
+      <div class="validity-badge">
+        ⏰ This quote is valid until {{validUntil}}
+      </div>
+
+      <!-- Customer Information -->
+      <div class="section">
+        <h2 class="section-title">Customer Information</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Name</div>
+            <div class="info-value">{{customerName}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Phone</div>
+            <div class="info-value">{{customerPhone}}</div>
+          </div>
+          {{#if customerEmail}}
+          <div class="info-item">
+            <div class="info-label">Email</div>
+            <div class="info-value">{{customerEmail}}</div>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+
+      <!-- Tour Details -->
+      <div class="section">
+        <h2 class="section-title">Tour Package Details</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Package</div>
+            <div class="info-value">{{tourTitle}}</div>
+          </div>
+          {{#if destination}}
+          <div class="info-item">
+            <div class="info-label">Destination</div>
+            <div class="info-value">{{destination}}</div>
+          </div>
+          {{/if}}
+          <div class="info-item">
+            <div class="info-label">Departure Date</div>
+            <div class="info-value">{{departureDate}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Return Date</div>
+            <div class="info-value">{{endDate}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Passengers</div>
+            <div class="info-value">
+              {{paxAdults}} Adult(s) {{#if (gt paxChildren 0)}}, {{paxChildren}}
+              Child(ren){{/if}} {{#if (gt paxInfants 0)}}, {{paxInfants}}
+              Infant(s){{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Itinerary -->
+      {{#if itinerary}}
+      <div class="section">
+        <h2 class="section-title">Day-by-Day Itinerary</h2>
+        {{#each itinerary}}
+        <div class="itinerary-day">
+          <h4>Day {{day}}: {{title}}</h4>
+          {{#if city_name}}
+          <p><strong>City:</strong> {{city_name}}</p>
+          {{/if}}
+          <p>{{description}}</p>
+
+          <div class="day-details">
+            {{#if meals}}
+            <div class="detail-item">
+              <span class="detail-label">Meals:</span>
+              <span
+                >{{#each meals}}{{this}}{{#unless @last}},
+                {{/unless}}{{/each}}</span
+              >
+            </div>
+            {{/if}} {{#if stay}} {{#if stay.hotel_name}}
+            <div class="detail-item">
+              <span class="detail-label">Stay:</span>
+              <span
+                >{{stay.hotel_name}}{{#if stay.room_type}} -
+                {{stay.room_type}}{{/if}}</span
+              >
+            </div>
+            {{/if}} {{/if}} {{#if activities}}
+            <div class="detail-item" style="grid-column: 1 / -1">
+              <span class="detail-label">Activities:</span>
+              <span
+                >{{#each activities}}{{this}}{{#unless @last}},
+                {{/unless}}{{/each}}</span
+              >
+            </div>
+            {{/if}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}
+
+      <!-- Inclusions -->
+      {{#if inclusions}}
+      <div class="section">
+        <h2 class="section-title">Package Inclusions</h2>
+        <ul class="inclusions-list">
+          {{#each inclusions}}
+          <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      {{/if}}
+
+      <!-- Exclusions -->
+      {{#if exclusions}}
+      <div class="section">
+        <h2 class="section-title">Package Exclusions</h2>
+        <ul class="exclusions-list">
+          {{#each exclusions}}
+          <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      {{/if}}
+
+      <!-- Special Notes -->
+      {{#if specialNotes}}
+      <div class="special-notes">
+        <h4>📌 Important Notes</h4>
+        <p>{{specialNotes}}</p>
+      </div>
+      {{/if}}
+
+      <!-- Price Breakdown -->
+      <div class="section">
+        <h2 class="section-title">Price Breakdown</h2>
+        <table class="price-table">
+          <tr>
+            <td>
+              Package Amount ({{paxAdults}} Adult{{#if (gt paxAdults
+              1)}}s{{/if}} @ {{formatINR pricePerAdult}} per person)
+            </td>
+            <td>{{formatINR (add 0 (add 0 totalAmount))}}</td>
+          </tr>
+          {{#if (gt paxChildren 0)}} {{#if pricePerChild}}
+          <tr>
+            <td>
+              Children ({{paxChildren}} @ {{formatINR pricePerChild}} per child)
+            </td>
+            <td>Included above</td>
+          </tr>
+          {{/if}} {{/if}} {{#if (gt paxInfants 0)}} {{#if pricePerInfant}}
+          <tr>
+            <td>
+              Infants ({{paxInfants}} @ {{formatINR pricePerInfant}} per infant)
+            </td>
+            <td>Included above</td>
+          </tr>
+          {{/if}} {{/if}}
+          <tr class="subtotal">
+            <td><strong>Subtotal</strong></td>
+            <td><strong>{{formatINR totalAmount}}</strong></td>
+          </tr>
+          <tr>
+            <td>GST (5%)</td>
+            <td>{{formatINR gstAmount}}</td>
+          </tr>
+          {{#if includeTcs}}
+          <tr>
+            <td>TCS ({{tcsRate}})</td>
+            <td>{{formatINR tcsAmount}}</td>
+          </tr>
+          {{/if}}
+          <tr class="total">
+            <td>Grand Total</td>
+            <td>{{formatINR grandTotal}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Terms & Conditions -->
+      <div class="section">
+        <h2 class="section-title">Terms & Conditions</h2>
+        <div class="terms-box">
+          {{#if termsAndConditions}}
+          <p>{{termsAndConditions}}</p>
+          {{else}}
+          <ul>
+            <li>This quote is valid for {{validUntil}} only</li>
+            <li>Prices are subject to availability at the time of booking</li>
+            <li>Full payment required to confirm booking</li>
+            <li>Cancellation charges apply as per company policy</li>
+            <li>Travel insurance is recommended but not included</li>
+            <li>
+              Passport must be valid for at least 6 months from travel date
+            </li>
+            <li>Prices may vary based on seasonal fluctuations</li>
+            <li>GST and TCS are calculated as per government regulations</li>
+          </ul>
+          {{/if}}
+        </div>
+      </div>
+
+      <!-- Agency Contact -->
+      <div class="section">
+        <h2 class="section-title">Contact Information</h2>
+        <div class="contact-info">
+          <div style="font-weight: 600; font-size: 16px; margin-bottom: 8px">
+            {{agencyName}}
+          </div>
+          {{#if agentName}}
+          <div>Agent: {{agentName}}</div>
+          {{/if}}
+          <div>Phone: {{agencyPhone}}</div>
+          {{#if agencyEmail}}
+          <div>Email: {{agencyEmail}}</div>
+          {{/if}}
+        </div>
+        <p style="margin-top: 15px; font-size: 13px; color: var(--text-light)">
+          For any queries or to confirm this booking, please contact us at the
+          above details.
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>Thank you for considering Cox & Kings Partner Network</p>
+        <p>
+          This is a computer-generated quote and does not require a signature.
+        </p>
+        <p>&copy; {{currentYear}} Cox & Kings. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>
