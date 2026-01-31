@@ -4,28 +4,12 @@ import chromium from "@sparticuz/chromium";
 export async function generatePDF(html) {
   console.log("[Puppeteer] Launching browser...");
 
-  // Railway uses system Chromium, Vercel uses @sparticuz/chromium
-  const isRailway = process.env.RAILWAY_ENVIRONMENT !== undefined;
-
-  const browserConfig = isRailway
-    ? {
-        args: [
-          "--no-sandbox",
-          "--disable-setuid-sandbox",
-          "--disable-dev-shm-usage",
-          "--disable-gpu",
-        ],
-        executablePath: "/usr/bin/chromium",
-        headless: true,
-      }
-    : {
-        args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath(),
-        headless: chromium.headless,
-      };
-
-  const browser = await puppeteer.launch(browserConfig);
+  const browser = await puppeteer.launch({
+    args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
+  });
 
   try {
     const page = await browser.newPage();
