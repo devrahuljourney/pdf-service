@@ -43,6 +43,7 @@ COPY . .
 ENV NODE_ENV=production
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+ENV NODE_OPTIONS="--dns-result-order=ipv4first"
 
 # Expose port
 EXPOSE 3000

@@ -131,6 +131,8 @@ export async function sendEmail(options) {
     const conn = tls.connect({
       host: "smtp.gmail.com",
       port: 465,
+      timeout: 30000, // 30 second timeout
+      family: 4, // Force IPv4
     });
 
     return new Promise((resolve, reject) => {
