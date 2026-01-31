@@ -84,18 +84,25 @@ const QuoteDataSchema = z.object({
   packageImages: z.array(z.string()).nullable().optional(),
 });
 
-const PDFRequestSchema = z.object({
-  type: z.enum(["booking-voucher", "quote", "invoice"]),
-  data: z.any(),
-  recipients: z
-    .object({
-      customer: EmailRecipientSchema.optional(),
-      agent: EmailRecipientSchema.optional(),
-    })
-    .optional(), // Make recipients optional since main app handles emails
-});
+const PDFRequestSchema = z
+  .object({
+    type: z.enum(["booking-voucher", "quote", "invoice"]),
+    data: z.any(),
+    recipients: z
+      .object({
+        customer: EmailRecipientSchema.optional(),
+        agent: EmailRecipientSchema.optional(),
+      })
+      .optional(),
+  })
+  .passthrough(); // Allow extra fields and strip undefined
 
 export function validatePDFRequest(data) {
+  // Remove undefined recipients field if present
+  if (data.recipients === undefined) {
+    delete data.recipients;
+  }
+
   // First validate the basic structure
   const validated = PDFRequestSchema.parse(data);
 
