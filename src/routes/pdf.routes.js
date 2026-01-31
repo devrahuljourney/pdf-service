@@ -4,17 +4,12 @@ import { validatePDFRequest } from "../../utils/validator.js";
 import {
   prepareTemplateData,
   generatePDFDocument,
-  createPDFAttachment,
 } from "../services/pdf.service.js";
-import {
-  sendCustomerEmail,
-  sendAgentEmail,
-} from "../services/email.service.js";
 
 const router = express.Router();
 
 /**
- * Main PDF generation endpoint
+ * Main PDF generation endpoint - Returns PDF as base64
  */
 router.post("/generate-pdf", async (req, res) => {
   console.log("\n[API] ========== NEW REQUEST ==========");
@@ -32,7 +27,7 @@ router.post("/generate-pdf", async (req, res) => {
   try {
     // 1. Validate request
     const validatedData = validatePDFRequest(req.body);
-    const { type, data, recipients } = validatedData;
+    const { type, data } = validatedData;
 
     const documentId = data.voucherNumber || data.quoteNumber || "unknown";
     console.log(`[API] Processing ${type} for: ${documentId}`);
@@ -43,64 +38,31 @@ router.post("/generate-pdf", async (req, res) => {
     // 3. Generate PDF
     const pdfBuffer = await generatePDFDocument(type, templateData);
 
-    // 4. Create PDF attachment
-    const pdfAttachment = createPDFAttachment(type, documentId, pdfBuffer);
-
-    // 5. Render email template
+    // 4. Render email template HTML
     const emailHtml = renderTemplate(`${type}-email`, templateData);
 
-    // 6. Extract email data
-    const isBookingVoucher = type === "booking-voucher";
-    const customerEmail = recipients.customer?.email;
-    const agentEmail = recipients.agent?.email;
-    const customerName = data.customerName || "Customer";
-    const agencyName = data.agencyName || "Agent";
-    const customerPhone = data.customerPhone || "";
-    const tourTitle = data.tourTitle || "Travel Package";
-    const voucherNumber = documentId;
+    // 5. Create filename
+    const filename = `${type}-${documentId}.pdf`;
 
-    // 7. Send emails
-    const customerEmailResult = await sendCustomerEmail(
-      customerEmail,
-      type,
-      tourTitle,
-      voucherNumber,
-      emailHtml,
-      pdfAttachment,
-    );
+    // 6. Convert PDF to base64
+    const pdfBase64 = pdfBuffer.toString("base64");
 
-    const agentEmailResult = await sendAgentEmail(
-      agentEmail,
-      type,
-      tourTitle,
-      voucherNumber,
-      emailHtml,
-      pdfAttachment,
-      customerName,
-      agencyName,
-      customerPhone,
-      isBookingVoucher,
-    );
-
-    // 8. Check if all emails failed
-    if (
-      !customerEmailResult.success &&
-      !agentEmailResult.success &&
-      (customerEmail || agentEmail)
-    ) {
-      throw new Error("Failed to send emails to both customer and agent");
-    }
-
-    // 9. Send response
     console.log("[API] ========== REQUEST COMPLETE ==========\n");
 
+    // 7. Return PDF and email HTML to main app
     res.status(200).json({
       success: true,
-      customerEmailSent: customerEmail ? customerEmailResult.success : false,
-      agentEmailSent: agentEmail ? agentEmailResult.success : false,
-      pdfAttached: true,
-      pdfGenerated: true,
-      messageId: customerEmailResult.messageId || agentEmailResult.messageId,
+      pdf: pdfBase64,
+      emailHtml: emailHtml,
+      filename: filename,
+      metadata: {
+        type: type,
+        documentId: documentId,
+        size: pdfBuffer.length,
+        tourTitle: data.tourTitle || "Travel Package",
+        customerName: data.customerName || "Customer",
+        agencyName: data.agencyName || "Agent",
+      },
     });
   } catch (error) {
     console.error("[API] ✗ Error:", error.message);
@@ -108,10 +70,6 @@ router.post("/generate-pdf", async (req, res) => {
 
     res.status(500).json({
       success: false,
-      customerEmailSent: false,
-      agentEmailSent: false,
-      pdfAttached: false,
-      pdfGenerated: false,
       error: error.message || "Unknown error",
     });
   }

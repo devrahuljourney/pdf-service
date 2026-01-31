@@ -41,10 +41,6 @@ app.listen(PORT, () => {
   console.log(`✓ API endpoint: http://localhost:${PORT}/api/generate-pdf`);
   console.log(`✓ Health check: http://localhost:${PORT}/health`);
   console.log("");
-  console.log(
-    "📧 Gmail configured:",
-    process.env.GMAIL_USER || "Not configured",
-  );
   console.log("🔒 CORS origins:", getAllowedOrigins().join(", "));
   console.log("");
   console.log("Ready to generate PDFs! 📄");

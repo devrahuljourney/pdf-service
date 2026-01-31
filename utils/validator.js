@@ -87,10 +87,12 @@ const QuoteDataSchema = z.object({
 const PDFRequestSchema = z.object({
   type: z.enum(["booking-voucher", "quote", "invoice"]),
   data: z.any(),
-  recipients: z.object({
-    customer: EmailRecipientSchema.optional(),
-    agent: EmailRecipientSchema.optional(),
-  }),
+  recipients: z
+    .object({
+      customer: EmailRecipientSchema.optional(),
+      agent: EmailRecipientSchema.optional(),
+    })
+    .optional(), // Make recipients optional since main app handles emails
 });
 
 export function validatePDFRequest(data) {

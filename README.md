@@ -1,34 +1,35 @@
 # Cox & Kings PDF Generation Service
 
-A serverless PDF generation and email service built for Cox & Kings Partner Network. This service generates professional booking vouchers, quotes, and invoices as PDFs and sends them via email.
+A serverless PDF generation service built for Cox & Kings Partner Network. This service generates professional booking vouchers, quotes, and invoices as PDFs and returns them to your main application for email delivery.
 
-## 🚀 Quick Start
+## 🚀 Architecture
 
-**New to this project?** Follow these guides in order:
+**PDF Service (Railway)** → Generates PDF + Email HTML → **Main App** → Sends Email
 
-1. **[SETUP.md](SETUP.md)** - Complete installation and configuration guide
-2. **[QUICKSTART.md](QUICKSTART.md)** - Get running in 5 minutes
-3. **[DEPLOYMENT.md](DEPLOYMENT.md)** - Deploy to production
+This separation ensures:
+
+- No SMTP port blocking issues on Railway
+- Better separation of concerns
+- More flexible email handling in your main app
 
 ## Features
 
 - 📄 Generate professional PDF documents (booking vouchers, quotes, invoices)
-- 📧 Automated email delivery with PDF attachments
+- 🎨 Professional Cox & Kings branded templates
 - 💰 Automatic GST (5%) and TCS calculation (5% up to ₹10L, 20% above)
 - ✈️ Flight details and itinerary support
 - 👥 Multiple traveler information
-- 🎨 Professional Cox & Kings branded templates
-- 🚀 Serverless deployment on Vercel
+- 🖼️ Banner images and package galleries
+- 🚀 Deployed on Railway with Docker
 - 🔒 CORS-enabled API with origin validation
 
 ## Tech Stack
 
-- **Runtime**: Node.js with TypeScript
+- **Runtime**: Node.js
 - **PDF Generation**: Puppeteer Core + Chromium
-- **Email**: Nodemailer (Gmail SMTP)
 - **Templates**: Handlebars
 - **Validation**: Zod
-- **Deployment**: Vercel Serverless Functions
+- **Deployment**: Railway (Docker)
 
 ## Installation
 
@@ -38,40 +39,15 @@ npm install
 
 # Configure environment
 cp .env.example .env
-# Edit .env with your Gmail credentials
+# Edit .env with your configuration
 
-# Test locally (no Vercel needed)
-npm run test:local
-```
-
-See **[SETUP.md](SETUP.md)** for detailed instructions.
-
-## Project Structure
-
-```
-pdf-service/
-├── api/
-│   └── generate-pdf.ts          # Main API endpoint
-├── templates/
-│   ├── booking-voucher.html     # PDF template
-│   ├── booking-voucher-email.html # Email template
-│   └── styles/
-│       └── common.css           # Shared styles
-├── utils/
-│   ├── puppeteer.ts            # PDF generation
-│   ├── email.ts                # Email sending
-│   ├── template-render.ts      # Template rendering
-│   └── validator.ts            # Request validation
-├── types/
-│   └── index.ts                # TypeScript interfaces
-├── test-request.json           # Sample API request
-├── test-local.js               # Local test script
-├── SETUP.md                    # Setup guide
-├── QUICKSTART.md               # Quick start guide
-└── DEPLOYMENT.md               # Deployment guide
+# Start development server
+npm run dev
 ```
 
 ## API Documentation
+
+See **[API_INTEGRATION.md](API_INTEGRATION.md)** for complete integration guide.
 
 ### Endpoint
 
@@ -79,98 +55,37 @@ pdf-service/
 POST /api/generate-pdf
 ```
 
-### Request Body Example
+### Request Body
 
 ```json
 {
-  "type": "booking-voucher",
+  "type": "quote",
   "data": {
-    "voucherNumber": "CK2024001",
+    "quoteNumber": "B9E30EF3",
     "customerName": "John Doe",
-    "customerEmail": "john@example.com",
-    "customerPhone": "+91 9876543210",
-    "tourTitle": "Magical Kashmir - 7 Days",
-    "destination": "Kashmir",
-    "departureDate": "2024-06-15",
-    "endDate": "2024-06-22",
-    "paxAdults": 2,
-    "paxChildren": 1,
-    "paxInfants": 0,
-    "totalAmount": 150000,
-    "agencyName": "Travel World",
-    "agencyPhone": "+91 9876543210",
-    "includeTcs": true,
-    "flightIncluded": true
-  },
-  "recipients": {
-    "customer": {
-      "email": "john@example.com",
-      "name": "John Doe"
-    },
-    "agent": {
-      "email": "agent@travelworld.com",
-      "name": "Jane Smith"
-    }
+    "tourTitle": "Australia Coast to Outback",
+    "totalAmount": 150000
+    // ... other fields
   }
 }
 ```
-
-See `test-request.json` for a complete example with all optional fields.
 
 ### Response
 
 ```json
 {
   "success": true,
-  "emailsSent": {
-    "customer": true,
-    "agent": true
-  },
-  "pdfGenerated": true,
-  "messageId": "abc123@gmail.com"
+  "pdf": "JVBERi0xLjQKJeLjz9MK...", // base64 encoded PDF
+  "emailHtml": "<html>...</html>", // Rendered email template
+  "filename": "quote-B9E30EF3.pdf",
+  "metadata": {
+    "type": "quote",
+    "documentId": "B9E30EF3",
+    "size": 424434,
+    "tourTitle": "Australia Coast to Outback"
+  }
 }
 ```
-
-## Testing
-
-### Local Test (No Vercel Required)
-
-```bash
-npm run test:local
-```
-
-This directly tests PDF generation and email sending.
-
-### API Test (With Vercel Dev Server)
-
-```bash
-# Terminal 1: Start server
-npm start
-
-# Terminal 2: Test API
-curl -X POST http://localhost:3000/api/generate-pdf \
-  -H "Content-Type: application/json" \
-  -d @test-request.json
-```
-
-## Deployment
-
-```bash
-# Login to Vercel
-npm run login
-
-# Deploy to production
-npm run deploy
-```
-
-Then add environment variables in Vercel Dashboard:
-
-- `GMAIL_USER`
-- `GMAIL_APP_PASSWORD`
-- `ALLOWED_ORIGINS`
-- `NODE_ENV`
-
-See **[DEPLOYMENT.md](DEPLOYMENT.md)** for complete deployment guide.
 
 ## Tax Calculations
 
