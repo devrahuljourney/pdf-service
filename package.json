@@ -12,7 +12,6 @@
     "test:local": "node --loader ts-node/esm test-local.ts"
   },
   "dependencies": {
-    "@sparticuz/chromium": "^119.0.2",
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",

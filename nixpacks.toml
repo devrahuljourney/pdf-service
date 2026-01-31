@@ -1,0 +1,6 @@
+[phases.setup]
+nixPkgs = ["nodejs", "npm"]
+aptPkgs = ["chromium", "chromium-sandbox"]
+
+[start]
+cmd = "npm start"
