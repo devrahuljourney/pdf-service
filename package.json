@@ -6,10 +6,7 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
-    "build": "tsc",
-    "deploy": "npx vercel --prod",
-    "login": "npx vercel login",
-    "test:local": "node --loader ts-node/esm test-local.ts"
+    "build": "tsc"
   },
   "dependencies": {
     "@sparticuz/chromium": "^123.0.1",

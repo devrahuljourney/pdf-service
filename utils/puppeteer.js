@@ -164,13 +164,6 @@ export async function generatePDF(html) {
   try {
     const page = await browser.newPage();
 
-    // Log network requests to debug image loading
-    page.on("request", (request) => {
-      if (request.resourceType() === "image") {
-        console.log("[Puppeteer] Loading image:", request.url());
-      }
-    });
-
     page.on("requestfailed", (request) => {
       if (request.resourceType() === "image") {
         console.error(

@@ -22,6 +22,7 @@ router.post("/generate-pdf", async (req, res) => {
     departureStartDate: req.body.data?.departureStartDate,
     departureEndDate: req.body.data?.departureEndDate,
     duration: req.body.data?.duration,
+    brandTag: req.body.data?.brandTag
   });
 
   try {
@@ -30,7 +31,6 @@ router.post("/generate-pdf", async (req, res) => {
     const { type, data } = validatedData;
 
     const documentId = data.voucherNumber || data.quoteNumber || "unknown";
-    console.log(`[API] Processing ${type} for: ${documentId}`);
 
     // 2. Prepare template data
     const templateData = prepareTemplateData(data);

@@ -27,6 +27,16 @@ Handlebars.registerHelper("multiply", function (a, b) {
   return Math.round(a * b);
 });
 
+Handlebars.registerHelper("formatBrandTag", function (brandTag) {
+  if (!brandTag) return "";
+
+  // Convert BHARAT_DEKO or DUNIYA_DEKHO to Bharat Deko / Duniya Dekho
+  return brandTag
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+});
+
 export function renderTemplate(templateName, data) {
   console.log(`[Template] Rendering: ${templateName}`);
   console.log(`[Template] bannerImageUrl:`, data.bannerImageUrl);
