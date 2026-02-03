@@ -439,7 +439,7 @@
 
       .itinerary-main-title {
         font-family: "Georgia", serif;
-        font-size: 24pt;
+        font-size: 60px;
         font-weight: 400;
         color: #999999;
         margin-bottom: 8px;
@@ -464,6 +464,7 @@
       }
 
       .info-left {
+        font-size: 15px; 
         font-weight: 400;
       }
 
@@ -473,7 +474,7 @@
 
       .itinerary-two-column {
         display: grid;
-        grid-template-columns: 0.85fr 1.15fr;
+        grid-template-columns: 0.60fr 1.35fr;
         gap: 15px;
         margin-bottom: 10px;
       }
@@ -483,14 +484,17 @@
       }
 
       .route-box {
-        border: 1px solid #999999;
-        padding: 8px 10px;
         margin-bottom: 10px;
         font-family: "Arial", sans-serif;
         font-size: 7pt;
         font-weight: 700;
         color: #004080;
         line-height: 1.4;
+      }
+
+      .left-side{
+        border: 1px solid #333333;
+        padding: 20px;
       }
 
       .section-heading {
@@ -562,6 +566,7 @@
 
       .day-item {
         page-break-inside: avoid;
+        break-inside: avoid;
       }
 
       .day-title {
@@ -589,6 +594,51 @@
         padding-top: 10px;
         border-top: 1px solid #e0e0e0;
         margin-top: 10px;
+      }
+
+      /* ============================================ */
+      /* ITINERARY CONTINUATION PAGE STYLES */
+      /* ============================================ */
+      .page-itinerary-continuation {
+        padding: 20px 30px 15px 30px;
+        background: white;
+        page-break-before: always;
+      }
+
+      .continuation-header {
+        margin-bottom: 15px;
+      }
+
+      .continuation-label {
+        font-family: "Arial", sans-serif;
+        font-size: 6.5pt;
+        font-weight: 700;
+        color: #999999;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 6px;
+      }
+
+      .continuation-title {
+        font-family: "Georgia", serif;
+        font-size: 32pt;
+        font-weight: 400;
+        color: #999999;
+        margin-bottom: 8px;
+        line-height: 1;
+      }
+
+      .continuation-divider {
+        width: 100%;
+        height: 1px;
+        background: #cccccc;
+        margin-bottom: 15px;
+      }
+
+      .continuation-day-by-day {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px 10px;
       }
 
       /* ============================================ */
@@ -1489,11 +1539,235 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- PAGE 3: THE ITINERARY & HIGHLIGHTS -->
+    <!-- PAGE 3+: THE ITINERARY & HIGHLIGHTS -->
     <!-- ============================================ -->
+    {{#if itinerary}}
+    {{#splitItinerary itinerary}}
+      {{#if isFirst}}
+      <!-- First Itinerary Page (with left column) -->
+      <div class="page page-itinerary">
+        <!-- Top Label -->
+        <div class="itinerary-label">{{../country}} • GROUP TOUR</div>
+
+        <!-- Main Title -->
+        <h1 class="itinerary-main-title">{{../tourTitle}}</h1>
+
+        <!-- Divider Line -->
+        <div class="itinerary-title-divider"></div>
+
+        <!-- Info Bar -->
+        <div class="itinerary-info-bar">
+          <div class="info-left">
+            Duration • {{../duration}} • {{../countryCount}} {{#if (eq ../countryCount 1)}}Country{{else}}Countries{{/if}} • {{../cityCount}} {{#if (eq ../cityCount 1)}}City{{else}}Cities{{/if}}
+          </div>
+          <div class="info-right">Starting Price {{formatINR ../grandTotal}}*</div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="itinerary-two-column">
+          <!-- Left Column -->
+          <div class="itinerary-left-col">
+            <!-- Route Box -->
+            <div class="left-side">
+              {{#if ../nightAllocations}}
+              <div class="route-box">
+                {{#each ../nightAllocations}} {{#if @index}} > {{/if}}{{city}} {{/each}}
+              </div>
+              {{/if}}
+
+              <!-- Tour Overview -->
+              <h3 class="section-heading">Tour overview</h3>
+              <p class="tour-overview-text">
+                {{#if ../aboutDescription}} {{stripHtml ../aboutDescription}} {{else}} A great
+                journey is measured by the moments that leave you standing still in
+                awe, and somehow, Europe has a way of giving you a whole lot of
+                those. Paris draws you in with its cafés, corners, and sweeping
+                views from the Eiffel Tower, leaving you wondering how so much
+                beauty can exist in one place. Switzerland lifts your gaze even
+                higher: glaciers, snow-brushed peaks, and waterfalls that feel
+                carved out of the sky. Italy brings it all back down to earth:
+                gondolas slipping through Venice, a scoop of gelato in San
+                Gimignano, and history laid out in the streets of Rome. Over this
+                carefully designed 14-day journey, every detail is taken care of so
+                you can wander, taste, watch, and feel without a worry in the world.
+                From handpicked hotels to curated meals to easy transfers,
+                everything falls into place around you, leaving you free to collect
+                the sights, sounds, and the small surprises waiting for you here.
+                {{/if}}
+              </p>
+
+              <!-- C&K Highlights -->
+              <h3 class="section-heading">C&K highlights</h3>
+              <ul class="highlights-list">
+                {{#if ../highlights}} {{#each ../highlights}}
+                <li>{{this}}</li>
+                {{/each}} {{else}}
+                <li>Amsterdam Canal Cruise</li>
+                <li>Visit to Cheese Farm Catharina-Hoeve</li>
+                <li>Visit to De Zaanse Schans Clog Workshop</li>
+                <li>Second Visit to Keukenhof Gardens in Muidendam</li>
+                <li>Guided exploration of the Palace of Versailles</li>
+                <li>Guided Paris city tour with Eiffel Tower 3rd level access</li>
+                <li>Experience Paris by night with Seine River Cruise and dinner onboard</li>
+                <li>Orientation tour of Dijon, the heart of Burgundy</li>
+                <li>Journey through Switzerland's alpine heart on the GoldenPass Line</li>
+                <li>Scenic Titlis excursion with Rotair cable car, Ice Flyer, and alpine lunch</li>
+                <li>Rhine Falls visit and Grand Orientation Tour</li>
+                <li>Lindt Chocolate Factory experience</li>
+                <li>Guided discovery of Venice city</li>
+                <li>Gondola ride experience through the romantic canals of Venice</li>
+                <li>Half-day plane excursion by boat covering San Marco, Burano, and Murano</li>
+                <li>Iconic sights of Pisa: San Gimignano, and Siena with wine tasting</li>
+                <li>Guided exploration of Rome's iconic landmarks: Colosseum, Trevi Fountain, and Vatican City</li>
+                {{/if}}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="itinerary-right-col">
+            <!-- Hero Image -->
+            {{#if ../packageImages}}
+            <div class="itinerary-hero-img">
+              <img src="{{../packageImages.[0]}}" alt="Tour destination" />
+            </div>
+            {{/if}}
+
+            <!-- Day by Day Itinerary -->
+            <div class="day-by-day">
+              {{#each days}}
+              <div class="day-item">
+                <div class="day-title">Day {{day}}: {{title}}</div>
+                {{#if description}}
+                <div class="day-desc">{{stripHtml description}}</div>
+                {{/if}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="itinerary-footer">
+          Contact us on {{../agencyPhone}} or holidays@coxandkings.com
+        </div>
+      </div>
+      {{else}}
+      <!-- Continuation Itinerary Page (same layout as first page) -->
+      <div class="page page-itinerary-continuation">
+        <!-- Top Label -->
+        <div class="itinerary-label">{{../country}} • GROUP TOUR</div>
+
+        <!-- Main Title -->
+        <h1 class="itinerary-main-title">{{../tourTitle}} (continued)</h1>
+
+        <!-- Divider Line -->
+        <div class="itinerary-title-divider"></div>
+
+        <!-- Info Bar -->
+        <div class="itinerary-info-bar">
+          <div class="info-left">
+            Duration • {{../duration}} • {{../countryCount}} {{#if (eq ../countryCount 1)}}Country{{else}}Countries{{/if}} • {{../cityCount}} {{#if (eq ../cityCount 1)}}City{{else}}Cities{{/if}}
+          </div>
+          <div class="info-right">Starting Price {{formatINR ../grandTotal}}*</div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="itinerary-two-column">
+          <!-- Left Column -->
+          <div class="itinerary-left-col">
+            <!-- Route Box -->
+            <div class="left-side">
+              {{#if ../nightAllocations}}
+              <div class="route-box">
+                {{#each ../nightAllocations}} {{#if @index}} > {{/if}}{{city}} {{/each}}
+              </div>
+              {{/if}}
+
+              <!-- Tour Overview -->
+              <h3 class="section-heading">Tour overview</h3>
+              <p class="tour-overview-text">
+                {{#if ../aboutDescription}} {{stripHtml ../aboutDescription}} {{else}} A great
+                journey is measured by the moments that leave you standing still in
+                awe, and somehow, Europe has a way of giving you a whole lot of
+                those. Paris draws you in with its cafés, corners, and sweeping
+                views from the Eiffel Tower, leaving you wondering how so much
+                beauty can exist in one place. Switzerland lifts your gaze even
+                higher: glaciers, snow-brushed peaks, and waterfalls that feel
+                carved out of the sky. Italy brings it all back down to earth:
+                gondolas slipping through Venice, a scoop of gelato in San
+                Gimignano, and history laid out in the streets of Rome. Over this
+                carefully designed 14-day journey, every detail is taken care of so
+                you can wander, taste, watch, and feel without a worry in the world.
+                From handpicked hotels to curated meals to easy transfers,
+                everything falls into place around you, leaving you free to collect
+                the sights, sounds, and the small surprises waiting for you here.
+                {{/if}}
+              </p>
+
+              <!-- C&K Highlights -->
+              <h3 class="section-heading">C&K highlights</h3>
+              <ul class="highlights-list">
+                {{#if ../highlights}} {{#each ../highlights}}
+                <li>{{this}}</li>
+                {{/each}} {{else}}
+                <li>Amsterdam Canal Cruise</li>
+                <li>Visit to Cheese Farm Catharina-Hoeve</li>
+                <li>Visit to De Zaanse Schans Clog Workshop</li>
+                <li>Second Visit to Keukenhof Gardens in Muidendam</li>
+                <li>Guided exploration of the Palace of Versailles</li>
+                <li>Guided Paris city tour with Eiffel Tower 3rd level access</li>
+                <li>Experience Paris by night with Seine River Cruise and dinner onboard</li>
+                <li>Orientation tour of Dijon, the heart of Burgundy</li>
+                <li>Journey through Switzerland's alpine heart on the GoldenPass Line</li>
+                <li>Scenic Titlis excursion with Rotair cable car, Ice Flyer, and alpine lunch</li>
+                <li>Rhine Falls visit and Grand Orientation Tour</li>
+                <li>Lindt Chocolate Factory experience</li>
+                <li>Guided discovery of Venice city</li>
+                <li>Gondola ride experience through the romantic canals of Venice</li>
+                <li>Half-day plane excursion by boat covering San Marco, Burano, and Murano</li>
+                <li>Iconic sights of Pisa: San Gimignano, and Siena with wine tasting</li>
+                <li>Guided exploration of Rome's iconic landmarks: Colosseum, Trevi Fountain, and Vatican City</li>
+                {{/if}}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="itinerary-right-col">
+            <!-- Hero Image (optional on continuation pages) -->
+            {{#if ../packageImages}}
+            <div class="itinerary-hero-img">
+              <img src="{{../packageImages.[0]}}" alt="Tour destination" />
+            </div>
+            {{/if}}
+
+            <!-- Day by Day Itinerary -->
+            <div class="day-by-day">
+              {{#each days}}
+              <div class="day-item">
+                <div class="day-title">Day {{day}}: {{title}}</div>
+                {{#if description}}
+                <div class="day-desc">{{stripHtml description}}</div>
+                {{/if}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="itinerary-footer">
+          Contact us on {{../agencyPhone}} or holidays@coxandkings.com
+        </div>
+      </div>
+      {{/if}}
+    {{/splitItinerary}}
+    {{else}}
+    <!-- Fallback if no itinerary data -->
     <div class="page page-itinerary">
       <!-- Top Label -->
-      <div class="itinerary-label">EUROPE • GROUP TOUR</div>
+      <div class="itinerary-label">{{country}} • GROUP TOUR</div>
 
       <!-- Main Title -->
       <h1 class="itinerary-main-title">{{tourTitle}}</h1>
@@ -1516,6 +1790,7 @@
         <!-- Left Column -->
         <div class="itinerary-left-col">
           <!-- Route Box -->
+           <div class="left-side">
           {{#if nightAllocations}}
           <div class="route-box">
             {{#each nightAllocations}} {{#if @index}} > {{/if}}{{city}} {{/each}}
@@ -1525,7 +1800,7 @@
           <!-- Tour Overview -->
           <h3 class="section-heading">Tour overview</h3>
           <p class="tour-overview-text">
-            {{#if aboutDescription}} {{aboutDescription}} {{else}} A great
+            {{#if aboutDescription}} {{stripHtml aboutDescription}} {{else}} A great
             journey is measured by the moments that leave you standing still in
             awe, and somehow, Europe has a way of giving you a whole lot of
             those. Paris draws you in with its cafés, corners, and sweeping
@@ -1589,6 +1864,7 @@
             {{/if}}
           </ul>
         </div>
+        </div>
 
         <!-- Right Column -->
         <div class="itinerary-right-col">
@@ -1601,14 +1877,6 @@
 
           <!-- Day by Day Itinerary -->
           <div class="day-by-day">
-            {{#if itinerary}} {{#each itinerary}}
-            <div class="day-item">
-              <div class="day-title">Day {{day}}: {{title}}</div>
-              {{#if description}}
-              <div class="day-desc">{{description}}</div>
-              {{/if}}
-            </div>
-            {{/each}} {{else}}
             <div class="day-item">
               <div class="day-title">Day 1: Welcome to Amsterdam</div>
               <div class="day-desc">
@@ -1733,7 +2001,6 @@
                 stories gathered along the way.
               </div>
             </div>
-            {{/if}}
           </div>
         </div>
       </div>
@@ -1743,6 +2010,7 @@
         Contact us on {{agencyPhone}} or holidays@coxandkings.com
       </div>
     </div>
+    {{/if}}
 
     <!-- ============================================ -->
     <!-- PAGE 4: LOGISTICS, INCLUSIONS & DATES -->

@@ -38,9 +38,6 @@ router.post("/generate-pdf", async (req, res) => {
     // 3. Generate PDF
     const pdfBuffer = await generatePDFDocument(type, templateData);
 
-    // 4. Render email template HTML
-    const emailHtml = renderTemplate(`${type}-email`, templateData);
-
     // 5. Create filename
     const filename = `${type}-${documentId}.pdf`;
 
@@ -53,7 +50,6 @@ router.post("/generate-pdf", async (req, res) => {
     res.status(200).json({
       success: true,
       pdf: pdfBase64,
-      emailHtml: emailHtml,
       filename: filename,
       metadata: {
         type: type,
