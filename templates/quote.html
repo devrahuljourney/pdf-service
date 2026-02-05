@@ -31,6 +31,7 @@
         background: white;
         position: relative;
         page-break-after: always;
+        overflow: hidden;
       }
 
       /* ============================================ */
@@ -45,6 +46,8 @@
         background-position: center;
         background-repeat: no-repeat;
         padding: 0;
+        min-height: 297mm;
+        height: 297mm;
       }
 
       .cover-overlay {
@@ -89,7 +92,6 @@
         color: #ffd700;
         letter-spacing: 4px;
         text-transform: uppercase;
-        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
         margin-bottom: 10px;
       }
 
@@ -100,7 +102,6 @@
         color: #ffffff;
         letter-spacing: 2px;
         line-height: 1.1;
-        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9);
         margin-bottom: 8px;
         max-width: 900px;
       }
@@ -111,14 +112,12 @@
         font-weight: 600;
         color: #ffffff;
         letter-spacing: 1px;
-        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
         margin-bottom: 20px;
         line-height: 1.6;
         max-width: 800px;
       }
 
       .cover-price-section {
-        background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(10px);
         padding: 15px 35px;
         border-radius: 8px;
@@ -155,7 +154,6 @@
         font-size: 11pt;
         font-weight: 600;
         color: #ffffff;
-        background: rgba(0, 0, 0, 0.5);
         padding: 8px 20px;
         border-radius: 25px;
         display: inline-block;
@@ -177,7 +175,6 @@
       }
 
       .cover-rating {
-        background: rgba(0, 0, 0, 0.5);
         padding: 8px 20px;
         border-radius: 25px;
         display: inline-block;
@@ -203,7 +200,6 @@
         z-index: 2;
         text-align: center;
         padding: 15px 50px;
-        background: rgba(0, 0, 0, 0.8);
         font-family: "Arial", sans-serif;
         font-size: 10pt;
         font-weight: 600;
@@ -221,6 +217,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        min-height: 297mm;
       }
 
       .intro-header {
@@ -332,9 +329,6 @@
       }
 
       .intro-logo {
-        background: white;
-        padding: 10px;
-        border-radius: 6px;
         display: inline-block;
         width: fit-content;
       }
@@ -425,6 +419,8 @@
       .page-itinerary {
         padding: 20px 30px 15px 30px;
         background: white;
+        display: flex;
+        flex-direction: column;
       }
 
       .itinerary-label {
@@ -593,7 +589,7 @@
         color: #aaaaaa;
         padding-top: 10px;
         border-top: 1px solid #e0e0e0;
-        margin-top: 10px;
+        margin-top: auto;
       }
 
       /* ============================================ */
@@ -603,6 +599,8 @@
         padding: 20px 30px 15px 30px;
         background: white;
         page-break-before: always;
+        display: flex;
+        flex-direction: column;
       }
 
       .continuation-header {
@@ -842,6 +840,7 @@
         padding: 12px 30px;
         border-top: 1px solid #e0e0e0;
         position: relative;
+        margin-top: auto;
       }
 
       .page-number {
@@ -856,6 +855,8 @@
       .page-quote-details {
         padding: 25px 30px;
         background: white;
+        display: flex;
+        flex-direction: column;
       }
 
       .quote-details-header {
@@ -1177,7 +1178,7 @@
         align-items: center;
         padding-top: 15px;
         border-top: 2px solid #e0e0e0;
-        margin-top: 15px;
+        margin-top: auto;
       }
 
       .footer-contact {
@@ -1202,6 +1203,7 @@
         padding: 0;
         background: white;
         height: 297mm;
+        min-height: 297mm;
         max-height: 297mm;
         overflow: hidden;
       }
@@ -1218,9 +1220,6 @@
       }
 
       .back-logo {
-        background: white;
-        padding: 10px 15px;
-        border-radius: 6px;
         margin-bottom: 20px;
       }
 
@@ -1363,11 +1362,7 @@
       <div
         class="cover-overlay"
         style="
-          background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.3) 0%,
-            rgba(0, 0, 0, 0.5) 100%
-          );
+          background:rgba(0, 0, 0, 0.6);
         "></div>
     {{else}}
     <div
@@ -1385,7 +1380,7 @@
     {{/if}}
 
       <div class="cover-logo-badge">
-        <div style="background: white; padding: 15px 25px; border-radius: 8px">
+        <div>
           <img
             src="data:image/png;base64,{{COX_KINGS_LOGO_BASE64}}"
             alt="Cox & Kings"
@@ -2007,7 +2002,7 @@
 
       <!-- Footer -->
       <div class="itinerary-footer">
-        Contact us on {{agencyPhone}} or holidays@coxandkings.com
+        Contact us on +91 855 600 1700 or holidays@coxandkings.com
       </div>
     </div>
     {{/if}}
@@ -2359,8 +2354,13 @@
       <!-- Footer -->
       <div class="quote-details-footer">
         <div class="footer-contact">
-          <strong>Questions?</strong> Contact us at {{agencyPhone}}{{#if
-          agencyEmail}} or {{agencyEmail}}{{/if}}
+          <strong>Questions?</strong> Contact us at holidays@coxandkings.com
+          <br />
+          <span style="font-size: 7pt; margin-top: 5px; display: inline-block;">
+            <a href="https://coxandkings.com/info/terms-condition" style="color: #004080; text-decoration: none;">Terms & Conditions</a> | 
+            <a href="https://coxandkings.com/info/privacy-policy" style="color: #004080; text-decoration: none;">Privacy Policy</a> | 
+            <a href="https://coxandkings.com/info/cookie-policy" style="color: #004080; text-decoration: none;">Cookie Policy</a>
+          </span>
         </div>
         <div class="footer-page">Page 5</div>
       </div>
@@ -2406,7 +2406,7 @@
                   fill="white" />
               </svg>
             </span>
-            <span class="contact-text">{{agencyPhone}}</span>
+            <span class="contact-text">+91 855 600 1700</span>
           </div>
 
           <div class="contact-item">
@@ -2432,7 +2432,7 @@
               </svg>
             </span>
             <span class="contact-text"
-              >{{#if agencyEmail}}{{agencyEmail}}{{else}}holidays@coxandkings.com{{/if}}</span
+              >holidays@coxandkings.com</span
             >
           </div>
 
@@ -2464,6 +2464,28 @@
               </svg>
             </span>
             <span class="contact-text">www.coxandkings.com</span>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="back-divider"></div>
+
+        <!-- Policy Links -->
+        <div class="back-contact-info" style="gap: 8px;">
+          <div class="contact-item">
+            <span class="contact-text">
+              <a href="https://coxandkings.com/info/terms-condition" style="color: white; text-decoration: none;">Terms & Conditions</a>
+            </span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-text">
+              <a href="https://coxandkings.com/info/privacy-policy" style="color: white; text-decoration: none;">Privacy Policy</a>
+            </span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-text">
+              <a href="https://coxandkings.com/info/cookie-policy" style="color: white; text-decoration: none;">Cookie Policy</a>
+            </span>
           </div>
         </div>
 
