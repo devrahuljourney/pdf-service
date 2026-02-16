@@ -20,7 +20,9 @@ const BookingDataSchema = z.object({
   totalAmount: z.number(),
   agencyName: z.string(),
   agencyPhone: z.string(),
-  agencyEmail: z.string().email().nullable().optional(),
+  agencyEmail: z
+    .union([z.string().email(), z.literal(""), z.null()])
+    .optional(),
   agentName: z.string().nullable().optional(),
   specialRequests: z.string().nullable().optional(),
   inclusions: z.array(z.string()).nullable().optional(),
@@ -59,10 +61,13 @@ const QuoteDataSchema = z.object({
   totalAmount: z.number(),
   agencyName: z.string(),
   agencyPhone: z.string(),
-  agencyEmail: z.string().email().nullable().optional(),
+  agencyEmail: z
+    .union([z.string().email(), z.literal(""), z.null()])
+    .optional(),
   agentName: z.string().nullable().optional(),
   inclusions: z.array(z.string()).nullable().optional(),
   exclusions: z.array(z.string()).nullable().optional(),
+  tourInclusions: z.any().nullable().optional(),
   itinerary: z.array(z.any()).nullable().optional(),
   nightAllocations: z.array(z.any()).nullable().optional(),
   termsAndConditions: z.string().nullable().optional(),
@@ -82,7 +87,7 @@ const QuoteDataSchema = z.object({
   departureAirport: z.string().nullable().optional(),
   flightDetails: z.any().nullable().optional(),
   packageImages: z.array(z.string()).nullable().optional(),
-  quoteLink: z.string().nullable().optional()
+  quoteLink: z.string().nullable().optional(),
 });
 
 const PDFRequestSchema = z

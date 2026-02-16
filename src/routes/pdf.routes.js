@@ -22,7 +22,15 @@ router.post("/generate-pdf", async (req, res) => {
     departureStartDate: req.body.data?.departureStartDate,
     departureEndDate: req.body.data?.departureEndDate,
     duration: req.body.data?.duration,
-    brandTag: req.body.data?.brandTag
+    brandTag: req.body.data?.brandTag,
+  });
+
+  // Log inclusions data
+  console.log("[API] Inclusions data check:", {
+    hasInclusions: !!req.body.data?.inclusions,
+    hasExclusions: !!req.body.data?.exclusions,
+    hasTourInclusions: !!req.body.data?.tourInclusions,
+    tourInclusionsValue: req.body.data?.tourInclusions,
   });
 
   try {
@@ -38,10 +46,14 @@ router.post("/generate-pdf", async (req, res) => {
     // 3. Generate PDF
     const pdfBuffer = await generatePDFDocument(type, templateData);
 
-    // 5. Create filename
-    const filename = `${type}-${documentId}.pdf`;
+    // 4. Create filename with customer name
+    const customerName = (data.customerName || "Customer")
+      .replace(/[^a-zA-Z0-9\s-]/g, "") // Remove special characters
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .toLowerCase();
+    const filename = `${customerName}-${documentId}.pdf`;
 
-    // 6. Convert PDF to base64
+    // 5. Convert PDF to base64
     const pdfBase64 = pdfBuffer.toString("base64");
 
     console.log("[API] ========== REQUEST COMPLETE ==========\n");

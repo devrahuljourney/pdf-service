@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quote {{quoteNumber}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
     <style>
       * {
         margin: 0;
@@ -149,7 +152,7 @@
         color: #ffffff;
         letter-spacing: -1px;
         line-height: 1;
-        margin: 3px 0;
+        margin: 3px 10px;
       }
 
       .cover-price-per {
@@ -432,6 +435,7 @@
         background: white;
         display: flex;
         flex-direction: column;
+        min-height: 297mm;
       }
 
       .itinerary-label {
@@ -604,10 +608,11 @@
         text-align: center;
         font-family: "Arial", sans-serif;
         font-size: 6.5pt;
-        color: #aaaaaa;
-        padding-top: 10px;
-        border-top: 1px solid #e0e0e0;
+        color: #000000;
+        padding: 8px 15px;
         margin-top: auto;
+        border-radius: 4px;
+        font-weight: 500;
       }
 
       /* ============================================ */
@@ -655,6 +660,179 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 6px 10px;
+      }
+
+      /* ============================================ */
+      /* PAGE 3.5: INCLUSIONS & EXCLUSIONS PAGE STYLES */
+      /* ============================================ */
+      .page-inclusions-exclusions {
+        padding: 25px 30px 20px 30px;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        min-height: 297mm;
+      }
+
+      .inclusions-label {
+        font-family: "Arial", sans-serif;
+        font-size: 6.5pt;
+        font-weight: 700;
+        color: #999999;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+      }
+
+      .inclusions-main-title {
+        font-family: "Inter", sans-serif;
+        font-size: 40px;
+        font-weight: 600;
+        color: #64748b;
+        margin-bottom: 10px;
+        line-height: 1.1;
+        letter-spacing: -1.5px;
+      }
+
+      .inclusions-title-divider {
+        width: 100%;
+        height: 1px;
+        background: #cccccc;
+        margin-bottom: 20px;
+      }
+
+      .inclusions-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 15px;
+      }
+
+      .inclusion-section {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+
+      .inclusion-section-title {
+        font-family: "Inter", sans-serif;
+        font-size: 11pt;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .inclusion-icon {
+        font-size: 14pt;
+      }
+
+      .inclusion-section-title.inclusions-title {
+        color: #059669;
+      }
+
+      .inclusion-section-title.exclusions-title {
+        color: #dc2626;
+      }
+
+      .inclusion-section-title.tour-inclusions-title {
+        color: #2563eb;
+      }
+
+      .inclusions-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .inclusions-list li {
+        font-family: "Arial", sans-serif;
+        font-size: 7.5pt;
+        color: #333333;
+        padding: 5px 0;
+        padding-left: 18px;
+        position: relative;
+        line-height: 1.5;
+      }
+
+      .inclusions-list li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #059669;
+        font-weight: 700;
+        font-size: 9pt;
+      }
+
+      .exclusions-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .exclusions-list li {
+        font-family: "Arial", sans-serif;
+        font-size: 7.5pt;
+        color: #333333;
+        padding: 5px 0;
+        padding-left: 18px;
+        position: relative;
+        line-height: 1.5;
+      }
+
+      .exclusions-list li::before {
+        content: "✗";
+        position: absolute;
+        left: 0;
+        color: #dc2626;
+        font-weight: 700;
+        font-size: 9pt;
+      }
+
+      .tour-inclusions-list {
+        font-family: "Arial", sans-serif;
+        font-size: 9pt;
+        color: #333333;
+        line-height: 1.8;
+        margin: 0;
+        padding: 0;
+      }
+
+      .tour-inclusions-list .inclusion-item {
+        display: inline;
+      }
+
+      .tour-inclusions-list .inclusion-item::after {
+        content: " • ";
+        color: #2563eb;
+        font-weight: 700;
+        margin: 0 4px;
+      }
+
+      .tour-inclusions-list .inclusion-item:last-child::after {
+        content: "";
+      }
+
+      .inclusions-full-width {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+
+      .inclusions-footer {
+        text-align: center;
+        font-family: "Arial", sans-serif;
+        font-size: 6.5pt;
+        color: #000000;
+        padding: 8px 15px;
+        margin-top: auto;
+        border-radius: 4px;
+        font-weight: 500;
       }
 
       /* ============================================ */
@@ -858,11 +1036,12 @@
         text-align: center;
         font-family: "Arial", sans-serif;
         font-size: 7pt;
-        color: #999999;
-        padding: 12px 30px;
-        border-top: 1px solid #e0e0e0;
+        color: #000000;
+        padding: 8px 15px;
         position: relative;
         margin-top: auto;
+        border-radius: 4px;
+        font-weight: 500;
       }
 
       .page-number {
@@ -1426,11 +1605,10 @@
         {{/if}}
 
         <div class="cover-price-section">
-          <div class="cover-price-label">From</div>
-          <div class="cover-price-amount"><svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="50px" height="50px" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 8px;">
-  <path d="M12.9494914,6 C13.4853936,6.52514205 13.8531598,7.2212202 13.9645556,8 L17.5,8 C17.7761424,8 18,8.22385763 18,8.5 C18,8.77614237 17.7761424,9 17.5,9 L13.9645556,9 C13.7219407,10.6961471 12.263236,12 10.5,12 L7.70710678,12 L13.8535534,18.1464466 C14.0488155,18.3417088 14.0488155,18.6582912 13.8535534,18.8535534 C13.6582912,19.0488155 13.3417088,19.0488155 13.1464466,18.8535534 L6.14644661,11.8535534 C5.83146418,11.538571 6.05454757,11 6.5,11 L10.5,11 C11.709479,11 12.7183558,10.1411202 12.9499909,9 L6.5,9 C6.22385763,9 6,8.77614237 6,8.5 C6,8.22385763 6.22385763,8 6.5,8 L12.9499909,8 C12.7183558,6.85887984 11.709479,6 10.5,6 L6.5,6 C6.22385763,6 6,5.77614237 6,5.5 C6,5.22385763 6.22385763,5 6.5,5 L10.5,5 L17.5,5 C17.7761424,5 18,5.22385763 18,5.5 C18,5.77614237 17.7761424,6 17.5,6 L12.9494914,6 L12.9494914,6 Z"/>
-</svg>{{formatINRPlain grandTotal}}</div>
-          <div class="cover-price-per">per person</div>
+          <div class="cover-price-amount">INR {{formatINR grandTotal}}/-</div>
+           <div style="font-size: 8pt; color: #ffffff; margin-top: 2px;">
+            {{#if includeTcs}}incl. taxes{{else}}incl. GST{{/if}}
+          </div>
         </div>
 
         {{#if duration}}
@@ -1443,121 +1621,29 @@
 
         <div class="cover-rating">
           <span class="rating-stars"><svg width="20px" height="20px" viewBox="0 -0.5 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>star</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Vivid.JS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Vivid-Icons" transform="translate(-903.000000, -411.000000)" fill="#fae500"> <g id="Icons" transform="translate(37.000000, 169.000000)"> <g id="star" transform="translate(858.000000, 234.000000)"> <g transform="translate(7.000000, 8.000000)" id="Shape"> <polygon points="27.865 31.83 17.615 26.209 7.462 32.009 9.553 20.362 0.99 12.335 12.532 10.758 17.394 0 22.436 10.672 34 12.047 25.574 20.22"> </polygon> </g> </g> </g> </g> </g> </g></svg></span>
-          <span class="rating-text">4.8 rating</span>
+          <span class="rating-text">4.8 Rating</span>
         </div>
+
+        {{#if departureStartDate}}
+        <div class="cover-departure-info" style="margin-top: 20px; padding: 15px 25px; background: rgba(255, 255, 255, 0.1); border-radius: 8px; backdrop-filter: blur(10px);">
+          <div style="font-size: 10pt; color: #ffffff; font-weight: 500; margin-bottom: 8px;">
+            📅 Travel Dates
+          </div>
+          <div style="font-size: 12pt; color: #ffffff; font-weight: 600;">
+            {{formatDate departureStartDate}}{{#if departureEndDate}} - {{formatDate departureEndDate}}{{/if}}
+          </div>
+        </div>
+        {{/if}}
+
+        {{#if validUntil}}
+        <div class="cover-validity-info" style="margin-top: 12px; font-size: 9pt; color: rgba(255, 255, 255, 0.85);">
+          ⏰ Quote valid until {{formatDate validUntil}}
+        </div>
+        {{/if}}
       </div>
 
       <div class="cover-footer-text">
         Cox & Kings 260+ Years of Travel, 1M+ Travelers.
-      </div>
-    </div>
-
-    <!-- ============================================ -->
-    <!-- PAGE 2: INTRODUCTION & BRAND PROMISE -->
-    <!-- ============================================ -->
-    <div class="page page-intro">
-      <!-- Top Header -->
-      <div class="intro-header">
-        <div class="intro-from">From</div>
-        <div class="intro-brand">Cox & Kings</div>
-        <div class="intro-to-you">to you</div>
-        <div class="intro-divider"></div>
-      </div>
-
-      <!-- Main Body: Personal Letter -->
-      <div class="intro-letter">
-        <p class="intro-question">
-          When you think of travel, what's the first thing that comes to mind?
-        </p>
-
-        <p>
-          For us, it's a mix of excitement, comfort, and a whole lot of heart.
-          It's that sigh of relief when you know everything is taken care of,
-          that spark when a new experience feels utterly familiar, and that
-          beautiful time we call "now forget."
-        </p>
-
-        <p>
-          With Duniya Dekho making its way back, we aim to do more than plan
-          holidays, to create moments that go on to become everlasting memories.
-          Maybe it's the glimmer of a skyline at dusk, the burst of flavours
-          that surprise your senses, or the simple joy of sharing a laugh with
-          your favourite people in a new city; but each detail is intentional,
-          handpicked, tested, and timed to perfection by a team of travel
-          enthusiasts who genuinely love what they do!
-        </p>
-
-        <p>
-          At Cox & Kings, we've been crafting journeys for more than 260 years.
-          And yet, the joy of watching our travellers fall in love with the
-          world never gets old. So, wherever you go from here, wherever this
-          journey leads, we hope it leaves you with stories you'll want to tell
-          for years to come.
-        </p>
-
-        <div class="intro-signature">
-          <div class="signature-handwritten">Bhavna Taneja</div>
-          <div class="signature-closing">Expertly Yours,</div>
-          <div class="signature-name">Bhavna Taneja</div>
-          <div class="signature-title">Head, Holiday Experiences</div>
-        </div>
-      </div>
-
-      <!-- Bottom Section -->
-      <div class="intro-bottom">
-        <!-- Bottom Left: Logo and Contact -->
-        <div class="intro-left-column">
-          <div class="intro-logo">
-            <img
-              src="data:image/png;base64,{{COX_KINGS_LOGO_BASE64}}"
-              alt="Cox & Kings"
-              class="intro-logo-img" />
-          </div>
-
-          <div class="intro-contact">
-            <div class="contact-company">Cox and Kings</div>
-            <div class="contact-address">
-              Plot no. 32-B, 1st floor, 100 ft road<br />Ghitorni, New
-              Delhi-110030
-            </div>
-            <div class="contact-phone">+91 855 600 1700</div>
-            <div class="contact-email">holidays@coxandkings.com</div>
-            <div class="contact-website">www.coxandkings.com</div>
-          </div>
-        </div>
-
-        <!-- Bottom Right: What We Offer & Why Trust -->
-        <div class="intro-right-column">
-          <div class="intro-offerings">
-            <h4>What We Offer Across Europe</h4>
-            <ul>
-              <li>Private tailored travel</li>
-              <li>Guaranteed Group Departures</li>
-              <li>Multi-country itineraries</li>
-              <li>Luxury rail journeys</li>
-              <li>River cruises</li>
-              <li>Self-drive itineraries</li>
-            </ul>
-          </div>
-
-          <div class="intro-trust">
-            <h4>Why Trust Cox & Kings With Your Holiday</h4>
-            <ul>
-              <li>Our extraordinary heritage, established in 1758</li>
-              <li>Award-winning holidays crafted with care</li>
-              <li>Premium experiences at great value for money</li>
-              <li>Personalised services throughout the journey</li>
-              <li>Expert guidance from your dedicated tour consultant</li>
-              <li>
-                Exceptional guides who bring every destination to life
-              </li>
-            </ul>
-          </div>
-
-          <div class="intro-icon">
- <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="60" height="60" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M100.978 397.282c-20.95 5.586-36.508 24.756-36.508 47.403v0c0 26.986 22.079 49.065 49.065 49.065h10.705M159.24 493.75h71.666M273.977 479.355l2.556 1.751a72.298 72.298 0 0 0 40.848 12.645h81.083c26.986 0 49.065-22.079 49.065-49.065v0c0-23.932-17.372-43.984-40.125-48.22" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="m199.276 439.024 31.037 53.757c6.47 11.207 20.8 15.046 32.007 8.576h0c11.207-6.47 15.046-20.8 8.576-32.007l-10.726-18.578M222.648 52.244h66.703l5.37-12.692a5.26 5.26 0 0 0-1.743-6.299l-33.875-24.74a5.263 5.263 0 0 0-6.207 0l-33.875 24.74a5.262 5.262 0 0 0-1.743 6.299l5.37 12.692z" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="m308.051 102.932 8.519-14.755a5.262 5.262 0 0 0 0-5.262l-16.189-28.041a5.262 5.262 0 0 0-4.557-2.631h-79.649a5.262 5.262 0 0 0-4.557 2.631L195.43 82.915a5.262 5.262 0 0 0 0 5.262l8.519 14.755" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="m277.127 94.951 2.025-9.405-7.17-33.302h-31.964l-7.17 33.302 2.025 9.405zM391.088 334.263c.438-4.232.667-8.523.667-12.865 0-16.763-3.35-32.776-9.435-47.476M154.868 406.579c-.167.207-.343.405-.516.606 24.871 26.772 61.189 43.654 101.648 43.654 39.382 0 74.841-15.996 99.639-41.538M129.68 273.922a123.776 123.776 0 0 0-9.435 47.476c0 5.099.32 10.126.921 15.072M208.92 279.626a82.116 82.116 0 0 1-9.086-7.471 49.939 49.939 0 0 1-2.414 4.812c-9.232 15.99-25.963 24.938-43.185 24.987-2.765.008-4.091 3.347-2.057 5.22a49.905 49.905 0 0 0 8.856 6.506c22.385 12.924 50.591 6.545 65.427-13.942-4.123-8.024-10.164-14.889-17.541-20.112zM357.765 301.953c-17.222-.049-33.953-8.998-43.185-24.987a49.823 49.823 0 0 1-2.414-4.812 81.912 81.912 0 0 1-9.086 7.471c-7.377 5.224-13.418 12.089-17.541 20.111 14.835 20.487 43.041 26.867 65.427 13.942a49.905 49.905 0 0 0 8.856-6.506c2.034-1.871.708-5.211-2.057-5.219zM377 125.163h-7.167a50.96 50.96 0 0 0-8.597.745v26.816c0 10.521-8.529 19.049-19.049 19.049h-4.629v41.262c0 5.2-.489 10.286-1.419 15.216l24.659-22.417c1.839-1.671 3.011-3.966 3.222-6.442 1.57-18.424 14.91-33.938 33.224-38.049l3.825-.859a42.746 42.746 0 0 0 23.689-14.602l3.59-4.378c5.352-6.527.709-16.341-7.733-16.341H412" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="m437.966 176.952-11.013-33.748-2.196 2.678a42.739 42.739 0 0 1-23.689 14.602l-3.825.859c-18.313 4.111-31.653 19.625-33.224 38.049-.211 2.476-1.384 4.77-3.222 6.442l-24.659 22.417a1.11 1.11 0 0 1-.026-.017c-3.566 18.897-13.628 35.493-27.807 47.357h58.09c51.187 0 87.45-49.979 71.571-98.639zM175.684 227.176c.062.357.11.719.177 1.074l-24.659-22.417c-1.839-1.671-3.011-3.966-3.222-6.442-1.57-18.424-14.91-33.938-33.224-38.049l-3.825-.859a42.746 42.746 0 0 1-23.689-14.602l-2.196-2.678-11.013 33.748c-15.879 48.661 20.385 98.639 71.571 98.639h58.09c-14.444-12.085-24.627-29.077-28.01-48.414z" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="M174.442 213.035v-41.262h-4.629c-10.521 0-19.049-8.529-19.049-19.049v-26.816a50.96 50.96 0 0 0-8.597-.745H91.385c-8.441 0-13.085 9.813-7.733 16.341l3.59 4.378a42.735 42.735 0 0 0 23.689 14.602l3.825.859c18.313 4.111 31.653 19.625 33.224 38.049.211 2.476 1.383 4.77 3.222 6.442l24.659 22.417a82.025 82.025 0 0 1-1.419-15.216z" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="M240.215 379v.066c0 24.564 19.706 45.007 44.27 44.968 24.401-.039 40.971-19.852 40.971-44.199v-24.466a5 5 0 0 0-5-5h-18.414a5 5 0 0 0-5 5v24.096c0 6.572-4.868 12.325-11.412 12.941-7.508.706-13.845-5.206-13.845-12.571v-31.352a88.628 88.628 0 0 1 8.666-38.223l4.373-9.148c4.122-8.622 10.456-15.962 18.255-21.485 20.859-14.77 34.478-39.086 34.478-66.59v-41.262h-62.66c-.636 15.104-8.851 27.055-18.898 27.055s-18.262-11.952-18.898-27.055h-62.66v41.262c0 27.504 13.619 51.82 34.478 66.59 7.799 5.523 14.133 12.863 18.255 21.485l4.373 9.148a88.615 88.615 0 0 1 8.548 33.741M274.898 171.773h50.558v-30.262a27.792 27.792 0 0 1 4.869-15.753c-10.046-18.357-29.537-30.808-51.939-30.808h-44.771c-22.402 0-41.893 12.451-51.939 30.808a27.79 27.79 0 0 1 4.869 15.753v30.262h50.558M213.906 195.977v13.681M298.094 195.977v13.681" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="M342.187 171.773h-16.731v-30.262c0-15.422 12.502-27.924 27.924-27.924h2.856a5 5 0 0 1 5 5v34.137c0 10.52-8.528 19.049-19.049 19.049zM169.813 171.773h16.731v-30.262c0-15.422-12.502-27.924-27.924-27.924h-2.856a5 5 0 0 0-5 5v34.137c0 10.52 8.528 19.049 19.049 19.049z" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><ellipse cx="256" cy="169.888" rx="18.943" ry="28.94" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></ellipse><path d="M366.473 376.677h28.463c4.378 0 8.222 2.261 10.446 5.674a30.903 30.903 0 0 0 6.367-18.828c0-17.146-13.899-31.045-31.045-31.045s-31.045 13.899-31.045 31.045a30.903 30.903 0 0 0 6.367 18.828c2.226-3.413 6.07-5.674 10.447-5.674zM177.128 364.745c-4.602-4.602-11.757-5.068-16.893-1.426v-3.781c0-12.802-10.378-23.179-23.179-23.179H123.43c-12.802 0-23.179 10.378-23.179 23.179v31.84c0 13.386 10.851 24.237 24.237 24.237h11.511c7.628 0 14.428-3.527 18.87-9.036l22.26-23.231c5.136-5.137 5.136-13.466-.001-18.603z" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="M394.936 415.615h-28.463c-6.886 0-12.469-5.582-12.469-12.469v-14c0-6.886 5.582-12.469 12.469-12.469h28.463c6.886 0 12.469 5.582 12.469 12.469v14c0 6.886-5.583 12.469-12.469 12.469zM252 225h8M252 252h8M252 279h8M202.166 444.028h-78.764M388.598 444.028h-89.052" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path></g></svg>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -1583,7 +1669,12 @@
           <div class="info-left">
             Duration • {{../duration}} • {{../countryCount}} {{#if (eq ../countryCount 1)}}Country{{else}}Countries{{/if}} • {{../cityCount}} {{#if (eq ../cityCount 1)}}City{{else}}Cities{{/if}}
           </div>
-          <div class="info-right">Starting Price {{formatINR ../grandTotal}}*</div>
+          <div class="info-right">
+            Quote Price INR {{formatINR ../grandTotal}}/-
+            <div style="font-size: 5pt; color: #666; margin-top: 2px;">
+              {{#if ../includeTcs}}incl. taxes{{else}}incl. GST{{/if}}
+            </div>
+          </div>
         </div>
 
         <!-- Two Column Layout -->
@@ -1594,7 +1685,7 @@
             <div class="left-side">
               {{#if ../nightAllocations}}
               <div class="route-box">
-                {{#each ../nightAllocations}} {{#if @index}} > {{/if}}{{city}} {{/each}}
+                {{#each ../nightAllocations}} {{#if @index}} > {{/if}}{{city}}{{#if nights}} ({{nights}}N){{/if}} {{/each}}
               </div>
               {{/if}}
 
@@ -1672,8 +1763,8 @@
 
         <!-- Footer -->
         <div class="itinerary-footer">
-          Contact us on {{../agencyPhone}} or holidays@coxandkings.com
-        </div>
+          {{#if ../agencyName}}{{../agencyName}} | {{/if}}{{#if ../agencyEmail}}{{../agencyEmail}}{{else}}holidays@coxandkings.com{{/if}} | {{#if ../agencyPhone}}{{../agencyPhone}}{{else}}+91 855 600 1700{{/if}}
+          <span class="page-number">2</span></div>
       </div>
       {{else}}
       <!-- Continuation Itinerary Page (same layout as first page) -->
@@ -1703,7 +1794,7 @@
             <div class="left-side">
               {{#if ../nightAllocations}}
               <div class="route-box">
-                {{#each ../nightAllocations}} {{#if @index}} > {{/if}}{{city}} {{/each}}
+                {{#each ../nightAllocations}} {{#if @index}} > {{/if}}{{city}}{{#if nights}} ({{nights}}N){{/if}} {{/each}}
               </div>
               {{/if}}
 
@@ -1781,8 +1872,8 @@
 
         <!-- Footer -->
         <div class="itinerary-footer">
-          Contact us on {{../agencyPhone}} or holidays@coxandkings.com
-        </div>
+          {{#if ../agencyName}}{{../agencyName}} | {{/if}}{{#if ../agencyEmail}}{{../agencyEmail}}{{else}}holidays@coxandkings.com{{/if}} | {{#if ../agencyPhone}}{{../agencyPhone}}{{else}}+91 855 600 1700{{/if}}
+          <span class="page-number">2</span></div>
       </div>
       {{/if}}
     {{/splitItinerary}}
@@ -1805,7 +1896,12 @@
           1)}}Country{{else}}Countries{{/if}} • {{cityCount}} {{#if (eq
           cityCount 1)}}City{{else}}Cities{{/if}}
         </div>
-        <div class="info-right">Starting Price {{formatINR grandTotal}}*</div>
+        <div class="info-right">
+          Quote Price INR {{formatINR grandTotal}}/-
+          <div style="font-size: 5pt; color: #666; margin-top: 2px;">
+            {{#if includeTcs}}incl. taxes{{else}}incl. GST{{/if}}
+          </div>
+        </div>
       </div>
 
       <!-- Two Column Layout -->
@@ -1816,7 +1912,7 @@
            <div class="left-side">
           {{#if nightAllocations}}
           <div class="route-box">
-            {{#each nightAllocations}} {{#if @index}} > {{/if}}{{city}} {{/each}}
+            {{#each nightAllocations}} {{#if @index}} > {{/if}}{{city}}{{#if nights}} ({{nights}}N){{/if}} {{/each}}
           </div>
           {{/if}}
 
@@ -2030,10 +2126,103 @@
 
       <!-- Footer -->
       <div class="itinerary-footer">
-        Contact us on +91 855 600 1700 or holidays@coxandkings.com
-      </div>
+        {{#if agencyName}}{{agencyName}} | {{/if}}{{#if agencyEmail}}{{agencyEmail}}{{else}}holidays@coxandkings.com{{/if}} | {{#if agencyPhone}}{{agencyPhone}}{{else}}+91 855 600 1700{{/if}}
+        <span class="page-number">2</span></div>
     </div>
     {{/if}}
+
+    <!-- ============================================ -->
+    <!-- PAGE 3.5: INCLUSIONS & EXCLUSIONS -->
+    <!-- ============================================ -->
+    <div class="page page-inclusions-exclusions">
+      <!-- Top Label -->
+      <div class="inclusions-label">{{country}} • GROUP TOUR</div>
+
+      <!-- Main Title -->
+      <h1 class="inclusions-main-title">What's Included & Excluded</h1>
+
+      <!-- Divider Line -->
+      <div class="inclusions-title-divider"></div>
+
+      <!-- Two Column Layout for Inclusions and Exclusions -->
+      <div class="inclusions-content">
+        <!-- Inclusions Column -->
+        <div class="inclusion-section">
+          <h3 class="inclusion-section-title inclusions-title">
+            <span class="inclusion-icon">✓</span>
+            Tour Inclusions
+          </h3>
+          <ul class="inclusions-list">
+            {{#if inclusions}}
+              {{#each inclusions}}
+              <li>{{this}}</li>
+              {{/each}}
+            {{else}}
+              <li>Return economy class airfare</li>
+              <li>Accommodation in hotels mentioned or similar</li>
+              <li>Meals as per itinerary (B = Breakfast, L = Lunch, D = Dinner)</li>
+              <li>All transfers and sightseeing by air-conditioned coach</li>
+              <li>Services of English speaking tour manager throughout</li>
+              <li>Entrance fees as per itinerary</li>
+              <li>Visa fees for Indian passport holders</li>
+              <li>Travel insurance up to 60 years of age</li>
+              <li>All currently applicable taxes</li>
+            {{/if}}
+          </ul>
+        </div>
+
+        <!-- Exclusions Column -->
+        <div class="inclusion-section">
+          <h3 class="inclusion-section-title exclusions-title">
+            <span class="inclusion-icon">✗</span>
+            Tour Exclusions
+          </h3>
+          <ul class="exclusions-list">
+            {{#if exclusions}}
+              {{#each exclusions}}
+              <li>{{this}}</li>
+              {{/each}}
+            {{else}}
+              <li>Porterage, tips, laundry, telephone calls and all items of personal nature</li>
+              <li>Any meals not mentioned in the itinerary</li>
+              <li>Any increase in taxes or fuel price, leading to increase in cost on surface transportation</li>
+              <li>Any cost arising due to natural calamities like landslides, road blockage, political disturbances</li>
+              <li>Any increase in Government tax or hotel tariff</li>
+              <li>Optional activities and experiences</li>
+              <li>Camera fees at monuments</li>
+              <li>Additional travel insurance above 60 years</li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Full Width Tour Inclusions Section -->
+      {{#if tourInclusions}}
+      <div class="inclusions-full-width">
+        <h3 class="inclusion-section-title tour-inclusions-title">
+          <span class="inclusion-icon">★</span>
+          {{#if tourInclusions.label}}{{tourInclusions.label}}{{else}}Special Tour Inclusions{{/if}}
+        </h3>
+        <div class="tour-inclusions-list">
+          {{#if tourInclusions.inclusions}}
+            {{#each tourInclusions.inclusions}}
+            <span class="inclusion-item">{{this.label}}</span>
+            {{/each}}
+          {{else}}
+            {{#each tourInclusions}}
+            <span class="inclusion-item">{{this}}</span>
+            {{/each}}
+          {{/if}}
+        </div>
+      </div>
+      {{/if}}
+
+      <!-- Footer -->
+      <div class="inclusions-footer">
+        {{#if agencyName}}{{agencyName}} | {{/if}}{{#if agencyEmail}}{{agencyEmail}}{{else}}holidays@coxandkings.com{{/if}} | {{#if agencyPhone}}{{agencyPhone}}{{else}}+91 855 600 1700{{/if}}
+        <span class="page-number">3</span>
+      </div>
+    </div>
 
     <!-- ============================================ -->
     <!-- PAGE 4: LOGISTICS, INCLUSIONS & DATES -->
@@ -2103,7 +2292,12 @@
         <!-- Right Column -->
         <div class="logistics-right">
           <!-- Starting Price Box -->
-          <div class="price-box">Starting Price {{formatINR grandTotal}}*</div>
+          <div class="price-box">
+            Quote Price INR {{formatINR grandTotal}}/-
+            <div style="font-size: 5pt; color: #666; margin-top: 4px;">
+              {{#if includeTcs}}incl. taxes{{else}}incl. GST{{/if}}
+            </div>
+          </div>
 
           <!-- Group Tours Include Box -->
           <div class="includes-box">
@@ -2134,9 +2328,9 @@
             <h3 class="section-title">Payment Schedule</h3>
             <ul class="payment-list">
               <li>100% of flight cost at the time of booking to secure seats</li>
-              <li>35% of the total package amount upon booking</li>
-              <li>40% due 60 days before departure</li>
-              <li>25% due 45 days before departure</li>
+              <li>30% of the total package amount upon booking</li>
+              <li>35% due 60 days before departure</li>
+              <li>35% due 45 days before departure</li>
             </ul>
           </div>
 
@@ -2153,13 +2347,13 @@
 
       <!-- Footer -->
       <div class="logistics-page-footer">
-        Find out more at www.coxandkings.com or from your travel agent
-        <span class="page-number">4</span>
+        {{#if agencyName}}{{agencyName}} | {{/if}}{{#if agencyEmail}}{{agencyEmail}}{{else}}holidays@coxandkings.com{{/if}} | {{#if agencyPhone}}{{agencyPhone}}{{else}}+91 855 600 1700{{/if}}
+        <span class="page-number">3</span>
       </div>
     </div>
 
     <!-- ============================================ -->
-    <!-- PAGE 5: QUOTE DETAILS & PRICING BREAKDOWN -->
+    <!-- PAGE 4: QUOTE DETAILS & PRICING BREAKDOWN -->
     <!-- ============================================ -->
     <div class="page page-quote-details">
       <!-- Header -->
@@ -2231,7 +2425,7 @@
               {{/if}} {{#if departureDate}}
               <div class="info-row">
                 <span class="info-label">Departure Date:</span>
-                <span class="info-value">{{departureDate}}</span>
+                <span class="info-value">{{departureStartDate}}</span>
               </div>
               {{/if}} {{#if originCity}}
               <div class="info-row">
@@ -2302,28 +2496,28 @@
               {{#if pricePerAdult}} {{#if (gt paxAdults 0)}}
               <div class="price-item">
                 <span class="price-desc"
-                  >Adults ({{paxAdults}} × {{formatINR pricePerAdult}})</span
+                  >Adults ({{paxAdults}} × INR {{formatINR pricePerAdult}})</span
                 >
                 <span class="price-amount"
-                  >{{formatINR (multiply paxAdults pricePerAdult)}}</span
+                  >INR {{formatINR (multiply paxAdults pricePerAdult)}}</span
                 >
               </div>
               {{/if}} {{/if}} {{#if pricePerChild}} {{#if (gt paxChildren 0)}}
               <div class="price-item">
                 <span class="price-desc"
-                  >Children ({{paxChildren}} × {{formatINR pricePerChild}})</span
+                  >Children ({{paxChildren}} × INR {{formatINR pricePerChild}})</span
                 >
                 <span class="price-amount"
-                  >{{formatINR (multiply paxChildren pricePerChild)}}</span
+                  >INR {{formatINR (multiply paxChildren pricePerChild)}}</span
                 >
               </div>
               {{/if}} {{/if}} {{#if pricePerInfant}} {{#if (gt paxInfants 0)}}
               <div class="price-item">
                 <span class="price-desc"
-                  >Infants ({{paxInfants}} × {{formatINR pricePerInfant}})</span
+                  >Infants ({{paxInfants}} × INR {{formatINR pricePerInfant}})</span
                 >
                 <span class="price-amount"
-                  >{{formatINR (multiply paxInfants pricePerInfant)}}</span
+                  >INR {{formatINR (multiply paxInfants pricePerInfant)}}</span
                 >
               </div>
               {{/if}} {{/if}} {{#if discountAmount}} {{#if (gt discountAmount
@@ -2338,24 +2532,24 @@
 
               <div class="price-subtotal">
                 <span class="price-desc">Package Subtotal</span>
-                <span class="price-amount">{{formatINR totalAmount}}</span>
+                <span class="price-amount">INR {{formatINR totalAmount}}</span>
               </div>
 
               <div class="price-item tax">
                 <span class="price-desc">GST (5%)</span>
-                <span class="price-amount">{{formatINR gstAmount}}</span>
+                <span class="price-amount">INR {{formatINR gstAmount}}</span>
               </div>
 
               {{#if includeTcs}} {{#if (gt tcsAmount 0)}}
               <div class="price-item tax">
                 <span class="price-desc">TCS ({{tcsRate}})</span>
-                <span class="price-amount">{{formatINR tcsAmount}}</span>
+                <span class="price-amount">INR {{formatINR tcsAmount}}</span>
               </div>
               {{/if}} {{/if}}
 
               <div class="price-total">
                 <span class="price-desc">Grand Total</span>
-                <span class="price-amount">{{formatINR grandTotal}}</span>
+                <span class="price-amount">INR {{formatINR grandTotal}}</span>
               </div>
             </div>
           </div>
@@ -2364,6 +2558,7 @@
           <div class="notes-box">
             <h3 class="notes-heading">Important Notes</h3>
             <ul class="notes-list">
+              <li>TCS amount is recoverable as per prevailing tax laws</li>
               <li>All prices are in Indian Rupees (INR)</li>
               <li>Prices are subject to availability at the time of booking</li>
               <li>
@@ -2392,9 +2587,119 @@
             <a href="https://coxandkings.com/info/cookie-policy" style="color: #004080; text-decoration: none;">Cookie Policy</a>
           </span>
         </div>
-        <div class="footer-page">Page 5</div>
+        <div class="footer-page">4</div>
       </div>
     </div>
+
+    <!-- ============================================ -->
+    <!-- PAGE 4: INTRODUCTION & BRAND PROMISE -->
+    <!-- ============================================ -->
+    <div class="page page-intro">
+      <!-- Top Header -->
+      <div class="intro-header">
+        <div class="intro-from">From</div>
+        <div class="intro-brand">Cox & Kings</div>
+        <div class="intro-to-you">to you</div>
+        <div class="intro-divider"></div>
+      </div>
+
+      <!-- Main Body: Personal Letter -->
+      <div class="intro-letter">
+        <p class="intro-question">
+          When you think of travel, what's the first thing that comes to mind?
+        </p>
+
+        <p>
+          For us, it's a mix of excitement, comfort, and a whole lot of heart.
+          It's that sigh of relief when you know everything is taken care of,
+          that spark when a new experience feels utterly familiar, and that
+          beautiful time we call "now forget."
+        </p>
+
+        <p>
+          With Duniya Dekho making its way back, we aim to do more than plan
+          holidays, to create moments that go on to become everlasting memories.
+          Maybe it's the glimmer of a skyline at dusk, the burst of flavours
+          that surprise your senses, or the simple joy of sharing a laugh with
+          your favourite people in a new city; but each detail is intentional,
+          handpicked, tested, and timed to perfection by a team of travel
+          enthusiasts who genuinely love what they do!
+        </p>
+
+        <p>
+          At Cox & Kings, we've been crafting journeys for more than 260 years.
+          And yet, the joy of watching our travellers fall in love with the
+          world never gets old. So, wherever you go from here, wherever this
+          journey leads, we hope it leaves you with stories you'll want to tell
+          for years to come.
+        </p>
+
+        <div class="intro-signature">
+          <div class="signature-handwritten" style="font-family: 'Mrs Saint Delafield', cursive;">Bhavna Taneja</div>
+          <div class="signature-closing">Expertly Yours,</div>
+          <div class="signature-name">Bhavna Taneja</div>
+          <div class="signature-title">Head, Holiday Experiences</div>
+        </div>
+      </div>
+
+      <!-- Bottom Section -->
+      <div class="intro-bottom">
+        <!-- Bottom Left: Logo and Contact -->
+        <div class="intro-left-column">
+          <div class="intro-logo">
+            <img
+              src="data:image/png;base64,{{COX_KINGS_LOGO_BASE64}}"
+              alt="Cox & Kings"
+              class="intro-logo-img" />
+          </div>
+
+          <div class="intro-contact">
+            <div class="contact-company">Cox and Kings</div>
+            <div class="contact-address">
+              Plot no. 32-B, 1st floor, 100 ft road<br />Ghitorni, New
+              Delhi-110030
+            </div>
+            <div class="contact-phone">+91 855 600 1700</div>
+            <div class="contact-email">holidays@coxandkings.com</div>
+            <div class="contact-website">www.coxandkings.com</div>
+          </div>
+        </div>
+
+        <!-- Bottom Right: What We Offer & Why Trust -->
+        <div class="intro-right-column">
+          <div class="intro-offerings">
+            <h4>What We Offer Across Europe</h4>
+            <ul>
+              <li>Private tailored travel</li>
+              <li>Guaranteed Group Departures</li>
+              <li>Multi-country itineraries</li>
+              <li>Luxury rail journeys</li>
+              <li>River cruises</li>
+              <li>Self-drive itineraries</li>
+            </ul>
+          </div>
+
+          <div class="intro-trust">
+            <h4>Why Trust Cox & Kings With Your Holiday</h4>
+            <ul>
+              <li>Our extraordinary heritage, established in 1758</li>
+              <li>Award-winning holidays crafted with care</li>
+              <li>Premium experiences at great value for money</li>
+              <li>Personalised services throughout the journey</li>
+              <li>Expert guidance from your dedicated tour consultant</li>
+              <li>
+                Exceptional guides who bring every destination to life
+              </li>
+            </ul>
+          </div>
+
+          <div class="intro-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="60" height="60" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M100.978 397.282c-20.95 5.586-36.508 24.756-36.508 47.403v0c0 26.986 22.079 49.065 49.065 49.065h10.705M159.24 493.75h71.666M273.977 479.355l2.556 1.751a72.298 72.298 0 0 0 40.848 12.645h81.083c26.986 0 49.065-22.079 49.065-49.065v0c0-23.932-17.372-43.984-40.125-48.22" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="m199.276 439.024 31.037 53.757c6.47 11.207 20.8 15.046 32.007 8.576h0c11.207-6.47 15.046-20.8 8.576-32.007l-10.726-18.578M222.648 52.244h66.703l5.37-12.692a5.26 5.26 0 0 0-1.743-6.299l-33.875-24.74a5.263 5.263 0 0 0-6.207 0l-33.875 24.74a5.262 5.262 0 0 0-1.743 6.299l5.37 12.692z" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="m308.051 102.932 8.519-14.755a5.262 5.262 0 0 0 0-5.262l-16.189-28.041a5.262 5.262 0 0 0-4.557-2.631h-79.649a5.262 5.262 0 0 0-4.557 2.631L195.43 82.915a5.262 5.262 0 0 0 0 5.262l8.519 14.755" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="m277.127 94.951 2.025-9.405-7.17-33.302h-31.964l-7.17 33.302 2.025 9.405zM391.088 334.263c.438-4.232.667-8.523.667-12.865 0-16.763-3.35-32.776-9.435-47.476M154.868 406.579c-.167.207-.343.405-.516.606 24.871 26.772 61.189 43.654 101.648 43.654 39.382 0 74.841-15.996 99.639-41.538M129.68 273.922a123.776 123.776 0 0 0-9.435 47.476c0 5.099.32 10.126.921 15.072M208.92 279.626a82.116 82.116 0 0 1-9.086-7.471 49.939 49.939 0 0 1-2.414 4.812c-9.232 15.99-25.963 24.938-43.185 24.987-2.765.008-4.091 3.347-2.057 5.22a49.905 49.905 0 0 0 8.856 6.506c22.385 12.924 50.591 6.545 65.427-13.942-4.123-8.024-10.164-14.889-17.541-20.112zM357.765 301.953c-17.222-.049-33.953-8.998-43.185-24.987a49.823 49.823 0 0 1-2.414-4.812 81.912 81.912 0 0 1-9.086 7.471c-7.377 5.224-13.418 12.089-17.541 20.111 14.835 20.487 43.041 26.867 65.427 13.942a49.905 49.905 0 0 0 8.856-6.506c2.034-1.871.708-5.211-2.057-5.219zM377 125.163h-7.167a50.96 50.96 0 0 0-8.597.745v26.816c0 10.521-8.529 19.049-19.049 19.049h-4.629v41.262c0 5.2-.489 10.286-1.419 15.216l24.659-22.417c1.839-1.671 3.011-3.966 3.222-6.442 1.57-18.424 14.91-33.938 33.224-38.049l3.825-.859a42.746 42.746 0 0 0 23.689-14.602l3.59-4.378c5.352-6.527.709-16.341-7.733-16.341H412" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="m437.966 176.952-11.013-33.748-2.196 2.678a42.739 42.739 0 0 1-23.689 14.602l-3.825.859c-18.313 4.111-31.653 19.625-33.224 38.049-.211 2.476-1.384 4.77-3.222 6.442l-24.659 22.417a1.11 1.11 0 0 1-.026-.017c-3.566 18.897-13.628 35.493-27.807 47.357h58.09c51.187 0 87.45-49.979 71.571-98.639zM175.684 227.176c.062.357.11.719.177 1.074l-24.659-22.417c-1.839-1.671-3.011-3.966-3.222-6.442-1.57-18.424-14.91-33.938-33.224-38.049l-3.825-.859a42.746 42.746 0 0 1-23.689-14.602l-2.196-2.678-11.013 33.748c-15.879 48.661 20.385 98.639 71.571 98.639h58.09c-14.444-12.085-24.627-29.077-28.01-48.414z" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="M174.442 213.035v-41.262h-4.629c-10.521 0-19.049-8.529-19.049-19.049v-26.816a50.96 50.96 0 0 0-8.597-.745H91.385c-8.441 0-13.085 9.813-7.733 16.341l3.59 4.378a42.735 42.735 0 0 0 23.689 14.602l3.825.859c18.313 4.111 31.653 19.625 33.224 38.049.211 2.476 1.383 4.77 3.222 6.442l24.659 22.417a82.025 82.025 0 0 1-1.419-15.216z" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="M240.215 379v.066c0 24.564 19.706 45.007 44.27 44.968 24.401-.039 40.971-19.852 40.971-44.199v-24.466a5 5 0 0 0-5-5h-18.414a5 5 0 0 0-5 5v24.096c0 6.572-4.868 12.325-11.412 12.941-7.508.706-13.845-5.206-13.845-12.571v-31.352a88.628 88.628 0 0 1 8.666-38.223l4.373-9.148c4.122-8.622 10.456-15.962 18.255-21.485 20.859-14.77 34.478-39.086 34.478-66.59v-41.262h-62.66c-.636 15.104-8.851 27.055-18.898 27.055s-18.262-11.952-18.898-27.055h-62.66v41.262c0 27.504 13.619 51.82 34.478 66.59 7.799 5.523 14.133 12.863 18.255 21.485l4.373 9.148a88.615 88.615 0 0 1 8.548 33.741M274.898 171.773h50.558v-30.262a27.792 27.792 0 0 1 4.869-15.753c-10.046-18.357-29.537-30.808-51.939-30.808h-44.771c-22.402 0-41.893 12.451-51.939 30.808a27.79 27.79 0 0 1 4.869 15.753v30.262h50.558M213.906 195.977v13.681M298.094 195.977v13.681" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="M342.187 171.773h-16.731v-30.262c0-15.422 12.502-27.924 27.924-27.924h2.856a5 5 0 0 1 5 5v34.137c0 10.52-8.528 19.049-19.049 19.049zM169.813 171.773h16.731v-30.262c0-15.422-12.502-27.924-27.924-27.924h-2.856a5 5 0 0 0-5 5v34.137c0 10.52 8.528 19.049 19.049 19.049z" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><ellipse cx="256" cy="169.888" rx="18.943" ry="28.94" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></ellipse><path d="M366.473 376.677h28.463c4.378 0 8.222 2.261 10.446 5.674a30.903 30.903 0 0 0 6.367-18.828c0-17.146-13.899-31.045-31.045-31.045s-31.045 13.899-31.045 31.045a30.903 30.903 0 0 0 6.367 18.828c2.226-3.413 6.07-5.674 10.447-5.674zM177.128 364.745c-4.602-4.602-11.757-5.068-16.893-1.426v-3.781c0-12.802-10.378-23.179-23.179-23.179H123.43c-12.802 0-23.179 10.378-23.179 23.179v31.84c0 13.386 10.851 24.237 24.237 24.237h11.511c7.628 0 14.428-3.527 18.87-9.036l22.26-23.231c5.136-5.137 5.136-13.466-.001-18.603z" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path><path d="M394.936 415.615h-28.463c-6.886 0-12.469-5.582-12.469-12.469v-14c0-6.886 5.582-12.469 12.469-12.469h28.463c6.886 0 12.469 5.582 12.469 12.469v14c0 6.886-5.583 12.469-12.469 12.469zM252 225h8M252 252h8M252 279h8M202.166 444.028h-78.764M388.598 444.028h-89.052" style="stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" data-original="#000000" opacity="1"></path></g></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ============================================ -->
     <!-- PAGE 6: BACK COVER -->
     <!-- ============================================ -->

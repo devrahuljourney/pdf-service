@@ -7,7 +7,7 @@ Handlebars.registerHelper("formatINR", function (amount) {
   const formatted = new Intl.NumberFormat("en-IN", {
     maximumFractionDigits: 0,
   }).format(amount);
-  return `₹${formatted}`;
+  return `${formatted}`;
 });
 
 Handlebars.registerHelper("formatINRPlain", function (amount) {

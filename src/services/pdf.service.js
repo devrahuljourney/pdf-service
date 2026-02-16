@@ -31,6 +31,34 @@ export function prepareTemplateData(data) {
   // Transform image URLs
   templateData = transformImageUrls(templateData);
 
+  // Log agency information
+  console.log("[PDF] Agency Information:", {
+    agencyName: templateData.agencyName || "NOT PROVIDED",
+    agencyEmail: templateData.agencyEmail || "NOT PROVIDED",
+    agencyPhone: templateData.agencyPhone || "NOT PROVIDED",
+  });
+
+  // Log inclusions/exclusions data
+  console.log("[PDF] Inclusions/Exclusions Data:", {
+    inclusions: templateData.inclusions
+      ? `Array(${templateData.inclusions.length})`
+      : "NOT PROVIDED",
+    exclusions: templateData.exclusions
+      ? `Array(${templateData.exclusions.length})`
+      : "NOT PROVIDED",
+    tourInclusions: templateData.tourInclusions || "NOT PROVIDED",
+  });
+
+  // Detailed tourInclusions logging
+  if (templateData.tourInclusions) {
+    console.log(
+      "[PDF] tourInclusions details:",
+      JSON.stringify(templateData.tourInclusions, null, 2),
+    );
+  } else {
+    console.log("[PDF] ⚠️ tourInclusions is missing from the data");
+  }
+
   console.log(
     `[PDF] ✓ Template data prepared with ${Object.keys(templateData).length} keys`,
   );
