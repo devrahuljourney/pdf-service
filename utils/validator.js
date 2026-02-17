@@ -42,7 +42,7 @@ const QuoteDataSchema = z.object({
   quoteNumber: z.string(),
   quoteDate: z.string(),
   validUntil: z.string(),
-  customerName: z.string(),
+  customerName: z.string().optional(),
   customerEmail: z.string().email().nullable(),
   customerPhone: z.string(),
   tourTitle: z.string(),
